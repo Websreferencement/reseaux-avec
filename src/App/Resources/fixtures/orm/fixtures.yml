@@ -1,1 +1,23 @@
 # https://github.com/nelmio/alice#reference
+App\Entity\Menu:
+    menu0:
+        name: Accueil
+        route: homepage
+    menu1:
+        name: Charte
+        route: charte
+    menu2:
+        name: Actions
+        route: actions
+    menu3:
+        name: Actualités
+        route: actualites
+    menu4:
+        name: Galeries
+        route: galleries
+    menu5:
+        name: Adhérents
+        route: adherents
+    menu6:
+        name: contact
+        route: contact
