@@ -24,11 +24,6 @@ class Menu
 	private $name;
 
 	/**
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $route;
-
-	/**
 	 * @ORM\OneToMany(targetEntity="Menu", mappedBy="parent")
 	 */
 	private $childs;
@@ -87,29 +82,6 @@ class Menu
 	public function setName($name)
 	{
 		$this->name = $name;
-	
-		return $this;
-	}
-
-	/**
-	 * Get route
-	 * 
-	 * @return string
-	 */
-	public function getRoute()
-	{
-		return $this->route;
-	}
-	
-	/**
-	 * Set route
-	 *
-	 * @param string $route
-	 * @return Menu
-	 */
-	public function setRoute($route)
-	{
-		$this->route = $route;
 	
 		return $this;
 	}
