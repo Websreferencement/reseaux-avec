@@ -8,6 +8,7 @@
 namespace App\Model;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\DependencyInjection\ContainerAware;
 
 /**
  * AbstractWidget
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  * This class provides a standard implementation of a widget.
  * @author David Jegat <david.jegat@gmail.com>
  */
-abstract class AbstractWidget implements WidgetInterface
+abstract class AbstractWidget extends ContainerAware implements WidgetInterface
 {
 	/**
 	 * @var ParameterBag $args

@@ -5,9 +5,15 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MenuType extends AbstractType
 {
+	/**
+	 * @var ContainerInterface $container
+	 */
+	private $container;
+
 	/**
 	 * Build forms
 	 * 
@@ -29,6 +35,16 @@ class MenuType extends AbstractType
 				'label' => 'Page de ce menu',
 				'class' => 'App\\Entity\\Page'
 			));
+	}
+
+	/**
+	 * Set the container
+	 * 
+	 * @param ContainerInterface $container
+	 */
+	public function setContainer(ContainerInterface $container)
+	{
+		$this->container = $container;
 	}
 
 	/**

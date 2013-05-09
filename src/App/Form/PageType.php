@@ -4,9 +4,15 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class PageType extends AbstractType
 {
+	/**
+	 * @var ContainerInterface $container
+	 */
+	private $container;
+
 	/**
 	 * Build the form
 	 * 
@@ -25,6 +31,7 @@ class PageType extends AbstractType
 			->add('content', 'textarea', array(
 				'label' => 'Contenue de cette page'
 			))
+			->add('widgets', 'widget')
 			->add('headTitle', 'text', array(
 				'attr' => array(
 					'class' => 'input-large'
@@ -39,6 +46,16 @@ class PageType extends AbstractType
 				'label' => 'Sitemap priorité'
 			))
 		;
+	}
+
+	/**
+	 * Set the container
+	 * 
+	 * @param ContainerInterface $container
+	 */
+	public function setContainer(ContainerInterface $container)
+	{
+		$this->container = $container;
 	}
 
 	/**

@@ -1,7 +1,29 @@
 # http://symfony.com/doc/current/components/dependency_injection/index.html
 parameters:
-    app.widget_manager.class: "App\Manager\WidgetManager"
+    app.widget_container.class: "App\Manager\WidgetContainer"
+    app.form_type.page.class: "App\\Form\\PageType"
+    app.form_type.menu.class: "App\\Form\\MenuType"
+    app.form_type.widget.class: "App\\Form\\WidgetType"
 
 services:
-    app.widget_manager:
-        class: %app.widget_manager.class%
+    app.widget_container:
+        class: %app.widget_container.class%
+        arguments: [@service_container]
+    app.form.page_type:
+        class: %app.form_type.page.class%
+        calls:
+            - ['setContainer', [ @service_container ]]
+        tags:
+            - {name: form.type, alias: page}
+    app.form.menu_type:
+        class: %app.form_type.menu.class%
+        calls:
+            - ['setContainer', [ @service_container ]]
+        tags:
+            - {name: form.type, alias: menu}
+    app.form.widget_type:
+        class: %app.form_type.widget.class%
+        calls:
+            - [ 'setContainer', [@service_container]]
+        tags:
+            - {name: form.type, alias: 'widget'}

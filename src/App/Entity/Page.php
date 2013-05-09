@@ -41,7 +41,7 @@ class Page
 	/**
 	 * @var string $headDescription
 	 *
-	 * @ORM\Column(type="text")
+	 * @ORM\Column(type="text", nullable=true)
 	 */
 	private $headDescription;
 
@@ -58,6 +58,13 @@ class Page
 	 * @ORM\OneToOne(targetEntity="Menu", inversedBy="page")
 	 */
 	private $menu;
+
+	/**
+	 * @var array $widgets
+	 * 
+	 * @ORM\Column(type="array")
+	 */
+	private $widgets;
 
 	/**
 	 * Get id
@@ -221,6 +228,65 @@ class Page
 	}
 
 	/**
+	 * Get widgets
+	 * 
+	 * @return array
+	 */
+	public function getWidgets()
+	{
+		return $this->widgets;
+	}
+	
+	/**
+	 * add widget
+	 *
+	 * @param Widget | String $widget
+	 * @return widgets
+	 */
+	public function addWidget($widget)
+	{
+		$this->widgets[] = $widget;
+	
+		return $this;
+	}
+	
+	/**
+	 * has widget
+	 *
+	 * @param Widget | String $widget
+	 * @return boolean
+	 */
+	public function hasWidget($widget)
+	{
+		foreach($this->widgets as $item){
+			if($item === $widget){
+	
+				return true;
+			}
+		}
+	
+		return false;
+	}
+	
+	/**
+	 * remove widget
+	 *
+	 * @param Widget | String $widget
+	 * @return widgets
+	 */
+	public function removeWidget($widget)
+	{
+		foreach($this->widgets as $key => $item){
+			if($item === $widget){
+	
+				unset($this->widgets[$key]);
+			}
+		}
+	
+		return $this;
+	}
+
+	/**
 	 * Representation of a Page
 	 * 
 	 * @return string
@@ -228,5 +294,13 @@ class Page
 	public function __toString()
 	{
 		return $this->getTitle();
+	}
+
+	/**
+	 * Default constructor
+	 */
+	public function __construct()
+	{
+		$this->widgets = array();
 	}
 }

@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<form method="POST" action="" {{ form_enctype(form) }} class="form form-horizontal">
+<form method="POST" action="{{path('app_page_create')}}" {{ form_enctype(form) }} class="form form-horizontal">
     {{ form_widget(form) }}
     <input type="submit" />
 </form>

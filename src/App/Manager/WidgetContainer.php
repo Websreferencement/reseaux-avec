@@ -10,6 +10,7 @@ namespace App\Manager;
 use App\Model\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use App\Exception\WidgetNotFoundException;
+use Iterator;
 
 /**
  * WidgetManager
@@ -17,7 +18,7 @@ use App\Exception\WidgetNotFoundException;
  * This manager provides an entire list of widgets
  * @author David Jegat <david.jegat@gmail.com>
  */
-class WidgetManager
+class WidgetContainer implements Iterator
 {
 	/**
 	 * @var array $widgets
@@ -28,6 +29,11 @@ class WidgetManager
 	 * @var ContainerInterface $container
 	 */
 	private $container;
+
+	/**
+	 * @var integer $iterator
+	 */
+	private $iterator;
 
 	/**
 	 * Get widgets
@@ -61,7 +67,7 @@ class WidgetManager
 	public function hasWidget($widget)
 	{
 		foreach($this->widgets as $item){
-			if($widget instanceof WidgetInterface and $item === $widget){
+			if($widget instanceof WidgetManagerInterface and $item === $widget){
 	
 				return true;
 			} else if(is_string($widget) and $item->getName() === $widget) {
@@ -112,6 +118,52 @@ class WidgetManager
 	}
 
 	/**
+	 * Sort the current
+	 * 
+	 * @return Widget
+	 */
+	public function current()
+	{
+		return $this->widgets[$this->iterator];
+	}
+
+	/**
+	 * return the current key
+	 * 
+	 * @return integer
+	 */
+	public function key()
+	{
+		return $this->iterator;
+	}
+
+	/**
+	 * increment iterator
+	 */
+	public function next()
+	{
+		++$this->iterator;
+	}
+
+	/**
+	 * Reset the iterator
+	 */
+	public function rewind()
+	{
+		$this->iterator = 0;
+	}
+
+	/**
+	 * Test if the current iterator offset exists
+	 * 
+	 * @return boolean
+	 */
+	public function valid()
+	{
+		return isset($this->widgets[$this->iterator]);
+	}
+
+	/**
 	 * default constructor for the WidgetManager
 	 * 
 	 * @param ContainerInterface $container
@@ -120,5 +172,6 @@ class WidgetManager
 	{
 		$this->widgets = array();
 		$this->container = $container;
+		$this->iterator = 0;
 	}
 }

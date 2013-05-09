@@ -13,7 +13,7 @@ namespace App\Model;
  * Defined the comportment of a standard widget.
  * @author David Jegat <david.jegat@gmail.com>
  */
-class WidgetInterface
+interface WidgetInterface
 {
 	/**
 	 * All widgets have a name. So give it an explicit name
