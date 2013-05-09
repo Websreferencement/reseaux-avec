@@ -150,6 +150,39 @@ class Menu
 		return $this;
 	}
 
+	/**
+	 * Get parent
+	 * 
+	 * @return Menu
+	 */
+	public function getParent()
+	{
+		return $this->parent;
+	}
+	
+	/**
+	 * Set parent
+	 *
+	 * @param Menu $parent
+	 * @return Menu
+	 */
+	public function setParent($parent)
+	{
+		$this->parent = $parent;
+	
+		return $this;
+	}
+
+	/**
+	 * Object representation
+	 * 
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->getName();
+	}
+
 	public function __construct()
 	{
 		$this->childs = new ArrayCollection();

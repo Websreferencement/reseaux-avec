@@ -219,4 +219,14 @@ class Page
 	
 		return $this;
 	}
+
+	/**
+	 * Representation of a Page
+	 * 
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->getTitle();
+	}
 }
