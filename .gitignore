@@ -8,3 +8,4 @@ web/css/*
 web/js/*
 vendor/*
 composer.lock
+app/config/security.yml
