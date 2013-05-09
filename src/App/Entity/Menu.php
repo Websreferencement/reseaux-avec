@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity(respositoryClass="App\Entity\MenuRepository")
+ * @ORM\Entity(repositoryClass="App\Entity\MenuRepository")
  * @ORM\Table(name="menu")
  */
 class Menu
