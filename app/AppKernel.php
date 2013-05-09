@@ -18,11 +18,14 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Knp\RadBundle\KnpRadBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Gregwar\ImageBundle\GregwarImageBundle(),
             new DavidJegat\AsseticMinifierBundle\DavidJegatAsseticMinifierBundle(),
             new App\App(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new CoreSphere\ConsoleBundle\CoreSphereConsoleBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
         }
