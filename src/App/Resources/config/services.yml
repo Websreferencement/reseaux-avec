@@ -4,6 +4,7 @@ parameters:
     app.form_type.page.class: "App\\Form\\PageType"
     app.form_type.menu.class: "App\\Form\\MenuType"
     app.form_type.widget.class: "App\\Form\\WidgetType"
+    app.twig.bootstrap_helper_extension.class: "App\\Twig\\BootstrapHelperExtension"
 
 services:
     app.widget_container:
@@ -27,3 +28,9 @@ services:
             - [ 'setContainer', [@service_container]]
         tags:
             - {name: form.type, alias: 'widget'}
+    app.twig.bootstrap_helper_extension:
+        class: %app.twig.bootstrap_helper_extension.class%
+        calls:
+            - [ 'setContainer', [@service_container] ]
+        tags:
+            - {name: twig.extension}

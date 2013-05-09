@@ -1,6 +1,5 @@
-{% extends '::base.html.twig' %}
+{% extends 'App::homepage.html.twig' %}
 
-{% block body %}
-{{ bootstrap_datatable( menus ) }}
-
-{% endblock body %}
+{% block content %}
+{{ bootstrap_datatable( menus, 'Vos menus' ) }}
+{% endblock content %}

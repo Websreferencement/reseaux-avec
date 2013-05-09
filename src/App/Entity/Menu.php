@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\MenuRepository")
  * @ORM\Table(name="menu")
  */
-class Menu
+class Menu implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -171,6 +172,18 @@ class Menu
 		$this->parent = $parent;
 	
 		return $this;
+	}
+
+	/**
+	 * Return the administration list fields
+	 * 
+	 * @return array
+	 */
+	public function getListFields()
+	{
+		return array(
+			'name' => $this->name
+		);
 	}
 
 	/**

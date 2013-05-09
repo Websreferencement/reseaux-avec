@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\PageRepository")
  * @ORM\Table(name="page")
  */
-class Page
+class Page implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -284,6 +285,19 @@ class Page
 		}
 	
 		return $this;
+	}
+
+	/**
+	 * Return the available fields in the administration
+	 * center
+	 * 
+	 * @return array
+	 */
+	public function getListFields()
+	{
+		return array(
+			'title' => $this->title
+		);
 	}
 
 	/**
