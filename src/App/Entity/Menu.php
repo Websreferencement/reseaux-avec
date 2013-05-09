@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(respositoryClass="App\Entity\MenuRepository")
  * @ORM\Table(name="menu")
  */
 class Menu
@@ -37,6 +37,13 @@ class Menu
 	 * @ORM\ManyToOne(targetEntity="Menu", inversedBy="children")
 	 */
 	private $parent;
+
+	/**
+	 * @var Page $page
+	 *
+	 * @ORM\OneToOne(targetEntity="Page", mappedBy="menu")
+	 */
+	private $page;
 
 	/**
 	 * Get id
@@ -146,6 +153,29 @@ class Menu
 		}
 	
 		return false;
+	}
+
+	/**
+	 * Get page
+	 * 
+	 * @return Page
+	 */
+	public function getPage()
+	{
+		return $this->page;
+	}
+	
+	/**
+	 * Set page
+	 *
+	 * @param Page $page
+	 * @return Menu
+	 */
+	public function setPage(Page $page)
+	{
+		$this->page = $page;
+	
+		return $this;
 	}
 
 	public function __construct()
