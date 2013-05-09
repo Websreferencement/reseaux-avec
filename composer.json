@@ -33,9 +33,9 @@
         "mopa/composer-bridge": "*@dev",
         "davidjegat/assetic-minifier-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
-        "knplabs/knp-menu-bundle": "dev-master",
-        "gregwar/image-bundle": "dev-master",
-        "coresphere/console-bundle": "dev-master"
+        "knplabs/knp-menu-bundle": "*",
+        "gregwar/image-bundle": "*",
+        "coresphere/console-bundle": "*"
     },
     "require-dev": {
         "behat/behat": "2.4.*",
