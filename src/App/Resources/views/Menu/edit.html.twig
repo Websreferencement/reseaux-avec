@@ -1,10 +1,13 @@
-{% extends '::base.html.twig' %}
+{% extends 'App::homepage.html.twig' %}
 
-{% block body %}
+{% block content %}
 
-<form method="PUT" action="" {{ form_enctype(form) }} class="form form-horizontal">
+<form method="PUT" 
+	action="{{path('app_menu_update', {'id': data.id})}}" 
+	{{ form_enctype(form) }} 
+	class="form form-horizontal">
     {{ form_widget(form) }}
-    <input type="submit" />
+    <input type="submit" class="btn" />
 </form>
 
-{% endblock body %}
+{% endblock content %}

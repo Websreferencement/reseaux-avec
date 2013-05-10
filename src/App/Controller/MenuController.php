@@ -54,7 +54,8 @@ class MenuController extends Controller
 		}
 
 		return array(
-			'form' => $form->createView()
+			'form' => $form->createView(),
+			'data' => $menu 
 		);
 	}
 
