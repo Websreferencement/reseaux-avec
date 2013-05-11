@@ -58,19 +58,19 @@ $.fn.djegSlider = function()
 
 		if(left){
 			if(toggle){
-				css.left = '100px';
-				animation.left = '0px';
+				css.left = '0px';
+				// animation.left = '0px';
 			} else {
 				css.left = '0px';
-				animation.left = '100px';
+				// animation.left = '100px';
 			}
 		} else {
 			if(toggle){
-				css.left = '-100px';
-				animation.left = '0px';
+				css.left = '0px';
+				// animation.left = '0px';
 			} else {
 				css.left = '0px';
-				animation.left = '-100px';
+				// animation.left = '-100px';
 			}
 		}
 
@@ -106,16 +106,16 @@ $.fn.djegSlider = function()
 
 	arrowLeft.click(function(){
 		window.clearInterval(animator);
-		animate(true, true, function(){
-			animate();
+		animate(false, true, function(){
+			animate(true);
 			animator = window.setInterval(doAnimation, transitionDuration);
 		});
 	});
 
 	arrowRight.click(function(){
 		window.clearInterval(animator);
-		animate(false, true, function(){
-			animate(true);
+		animate(true, true, function(){
+			animate();
 			animator = window.setInterval(doAnimation, transitionDuration);
 		});
 	});

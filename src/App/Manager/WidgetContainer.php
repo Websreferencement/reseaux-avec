@@ -17,7 +17,7 @@ use App\Exception\WidgetNotFoundException;
  * This manager provides an entire list of widgets
  * @author David Jegat <david.jegat@gmail.com>
  */
-class WidgetContainer implements AbstractContainer
+class WidgetContainer extends AbstractContainer
 {
 
 	/**

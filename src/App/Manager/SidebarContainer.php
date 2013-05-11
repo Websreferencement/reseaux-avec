@@ -2,6 +2,8 @@
 
 namespace App\Manager;
 
+use App\Model\WidgetInterface;
+
 class SidebarContainer extends AbstractContainer
 {
 	/**

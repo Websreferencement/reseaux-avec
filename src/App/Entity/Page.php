@@ -26,6 +26,13 @@ class Page implements ListableDatasInterface
 	private $title;
 
 	/**
+	 * @var string $uri
+	 *
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $uri;
+
+	/**
 	 * @var string $content
 	 *
 	 * @ORM\Column(type="text")
@@ -66,6 +73,13 @@ class Page implements ListableDatasInterface
 	 * @ORM\Column(type="array")
 	 */
 	private $widgets;
+
+	/**
+	 * @var string $sidebar
+	 *
+	 * @ORM\Column(type="string", length=250)
+	 */
+	private $sidebar;
 
 	/**
 	 * Get id
@@ -288,6 +302,29 @@ class Page implements ListableDatasInterface
 	}
 
 	/**
+	 * Get uri
+	 * 
+	 * @return string
+	 */
+	public function getUri()
+	{
+		return $this->uri;
+	}
+	
+	/**
+	 * Set uri
+	 *
+	 * @param string $uri
+	 * @return Page
+	 */
+	public function setUri($uri)
+	{
+		$this->uri = $uri;
+	
+		return $this;
+	}
+
+	/**
 	 * Return the available fields in the administration
 	 * center
 	 * 
@@ -298,6 +335,29 @@ class Page implements ListableDatasInterface
 		return array(
 			'title' => $this->title
 		);
+	}
+
+	/**
+	 * Get sidebar
+	 * 
+	 * @return string
+	 */
+	public function getSidebar()
+	{
+		return $this->sidebar;
+	}
+	
+	/**
+	 * Set sidebar
+	 *
+	 * @param string $sidebar
+	 * @return Page
+	 */
+	public function setSidebar($sidebar)
+	{
+		$this->sidebar = $sidebar;
+	
+		return $this;
 	}
 
 	/**

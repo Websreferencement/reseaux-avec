@@ -32,6 +32,7 @@ class PageType extends AbstractType
 				'label' => 'Contenue de cette page'
 			))
 			->add('widgets', 'widget')
+			->add('sidebar', 'sidebar')
 			->add('headTitle', 'text', array(
 				'attr' => array(
 					'class' => 'input-large'

@@ -5,6 +5,7 @@ namespace App;
 use Knp\RadBundle\AppBundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use App\DependencyInjection\Compiler\WidgetCompilerPass;
+use App\DependencyInjection\Compiler\SidebarCompilerPass;
 
 class App extends Bundle
 {
@@ -19,6 +20,8 @@ class App extends Bundle
 		parent::build($container);
 
 		$container->addCompilerPass(new WidgetCompilerPass());
+		$container->addCompilerPass(new SidebarCompilerPass());
+
 	}
 
 }

@@ -1,10 +1,5 @@
 <?php
-/*
- * This file is a part of réseaux AVEC. Please read
- * the LICENSE and/or README.md files for more informations
- * about this project.
- */
- 
+
 namespace App\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,66 +10,65 @@ use App\Exception\WidgetConstraintViolation;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
- * WidgetCompilerPass
- *
- * Compiler pass for widget support
- * @author David Jegat <david.jegat@gmail.com>
+ * SidebarCompilerPass
+ * 
+ * @author david jegat <david.jegat@gmail.com>
  */
-class WidgetCompilerPass implements CompilerPassInterface
+class SidebarCompilerPass implements CompilerPassInterface
 {
 	/**
-	 * Get all the registered widgets
+	 * Get all the registered sidebar
 	 * 
 	 * @return array
 	 */
-	private function getWidgets()
+	private function getSidebars()
 	{
 		$contents = (new Finder())
 			->files()
 			->name('*.php')
-			->in(dirname(dirname(__DIR__)).'/Widget');
+			->in(dirname(dirname(__DIR__)).'/Sidebar');
 
 		$classes = array();
 
 		foreach($contents as $file){
-			$class = 'App\\Widget\\'.$file->getBasename('.php');
+			$class = 'App\\Sidebar\\'.$file->getBasename('.php');
 			$reflection = new \ReflectionClass($class);
 			if( ! $reflection->implementsInterface('App\\Model\\WidgetInterface') ){
 				throw new WidgetConstraintViolation(
-					sprintf('The widget %s object must implement the App\\Model\\WidgetInterface interface !', 
+					sprintf('The sidebar %s object must implement the App\\Model\\WidgetInterface interface !', 
 						$class)
 				);
 			}
 
-			if( strlen($file->getBasename('.php')) <= 6 or substr($file->getBasename('.php'), -6) != 'Widget' ) {
+			if( strlen($file->getBasename('.php')) <= 7 or substr($file->getBasename('.php'), -7) != 'Sidebar' ) {
 				throw new WidgetConstraintViolation(
 					sprintf(
-						'The widget %s must be named %sWidget !',
+						'The sidebar %s must be named %Sidebar !',
 						$class,
 						$class
 					)
 				);
 			}
 
-			$classes[$file->getBasename('.php')] = 'App\\Widget\\'.$file->getBasename('.php');
+			$classes[$file->getBasename('.php')] = 'App\\Sidebar\\'.$file->getBasename('.php');
 		}
 
 		return $classes;
 	}
 
 	/**
-	 * Dynamicaly create tagged widget service
+	 * Dynamicaly create tagged sidebar service
 	 * 
 	 * @param ContainerBuilder $container
 	 */
 	private function createTaggedServices(ContainerBuilder $container)
 	{
-		foreach($this->getWidgets() as $name => $namespace){
+		foreach($this->getSidebars() as $name => $namespace){
 			$definition = new Definition($namespace);
 			$definition->addMethodCall('setContainer', array(new Reference('service_container')));
-			$definition->addTag('app.widget');
+			$definition->addTag('app.sidebar');
 
-			$container->setDefinition('app.widget.'.strtolower(str_replace('Widget', '', $name)), $definition);
+			$container->setDefinition('app.sidebar.'.strtolower(str_replace('Sidebar', '', $name)), $definition);
 		}
 	}
 
@@ -86,18 +80,18 @@ class WidgetCompilerPass implements CompilerPassInterface
 	 */
 	public function process(ContainerBuilder $container)
 	{
-		if (!$container->hasDefinition('app.widget_container')){
+		if (!$container->hasDefinition('app.sidebar_container')){
 			return;
 		}
 
 		$this->createTaggedServices($container);
 
-		$definition = $container->getDefinition('app.widget_container');
+		$definition = $container->getDefinition('app.sidebar_container');
 
-		$taggedServices = $container->findTaggedServiceIds('app.widget');
+		$taggedServices = $container->findTaggedServiceIds('app.sidebar');
 
 		foreach($taggedServices as $id => $attr){
-			$definition->addMethodCall('addWidget', array(new Reference($id)));
+			$definition->addMethodCall('addSidebar', array(new Reference($id)));
 		}
 	}
 }

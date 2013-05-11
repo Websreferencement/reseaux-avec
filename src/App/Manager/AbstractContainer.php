@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use Iterator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 abstract class AbstractContainer implements Iterator
 {
