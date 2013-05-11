@@ -27,3 +27,165 @@ App\Entity\Page:
         priority: 1
         widgets: ~
         sidebar: accueil
+    charte:
+        title: Charte
+        uri: "/charte"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Charte - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation
+    actions:
+        title: Actions
+        uri: "/actions"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Actions - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation
+    actus:
+        title: Actualités
+        uri: "/actualites"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Actualités - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation
+    galeries:
+        title: Galeries
+        uri: "/galeries"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Galeries - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation
+    adherents:
+        title: Adhérents
+        uri: "/adherents"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Adhérents - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation
+    contact:
+        title: Contacter-nous !
+        uri: "/contact"
+        content: |
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Dolor sit amet.</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.</li>
+                <li>Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat.</li>
+                <li>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                ci llum dolore eu fugiat nulla pariatur.</li>
+                <li>Excepteur sint occaecat cupidatat non
+                pr oident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+            </ul>
+        headTitle: "Contact - Réseau AVEC"
+        headDescription: "Réseau AVEC - ECO Construction"
+        priority: 0.5
+        widgets: ~
+        sidebar: navigation

@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Model\WidgetInterface;
+use App\Exception\WidgetNotFoundException;
 
 class SidebarContainer extends AbstractContainer
 {

@@ -19,11 +19,12 @@ php composer.phar install
 
 Configure the web site by copy the `app/config/parameters.yml.dist` to `app/config/parameters.yml` and edit it.
 
-Create your database datas and tables.
+Create your database datas and tables and load the default fixtures.
 
 ```
 php app/console doctrine:database:create
 php app/console doctrine:schema:update --force
+php app/console doctrine:fixtures:load
 ```
 
 Install all the assets
