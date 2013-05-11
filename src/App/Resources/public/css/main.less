@@ -3,6 +3,7 @@
 
 body
 {
+	font-family: verdana, Arial, sans-serif;
 	@media(max-width:748px)
 	{
 		padding:0;
@@ -12,15 +13,158 @@ body
 header
 {
 	width:100%;
-	background-color:#585858;
-	color:#E7E7E7;
-	.hero-unit
+	height:563px;
+	#slider
 	{
-		background-color:transparent;
+		position:absolute;
+		width:100%;
+		height:563px;
+		z-index:-1;
+		overflow:hidden;
+		.slider-content
+		{
+			width:100%;
+			height:100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			position:absolute;
+		}
+	}
+	.arrow-left
+	{
+		width:31px;
+		height:563px;
+		position:absolute;
+		top:0px;
+		left:5px;
+		background-image: url('../images/header/arrow_left.png');
+		background-position:center;
+		background-repeat: no-repeat;
+		cursor:pointer;
+		z-index:2;
+		&:hover{
+			background-image: url('../images/header/arrow_left_hover.png');
+		}
+	}
+	.arrow-right
+	{
+		width:31px;
+		height:563px;
+		position:absolute;
+		top:0px;
+		right:5px;
+		background-image: url('../images/header/arrow_right.png');
+		background-position:center;
+		background-repeat: no-repeat;
+		cursor:pointer;
+		z-index:2;
+		&:hover{
+			background-image: url('../images/header/arrow_right_hover.png');
+		}
+	}
+	.unit
+	{
+		height:464px;
+		margin:auto;
+		padding:0;
+		overflow:hidden;
+		img
+		{
+			display:block;
+			width:960px;
+			height:393px;
+			margin:35px auto;
+		}
+	}
+	#menu
+	{
+		height:99px;
+		background-image:url('../images/menu/background.png');
+		background-repeat: repeat-x;
+		ul
+		{
+			width:960px;
+			height:inherit;
+			margin:auto;
+			padding:0;
+			list-style: none;
+			overflow:hidden;
+			.menu-item
+			{
+				display:block;
+				height:99px;
+				width:137px;
+				cursor:pointer;
+				margin:0;
+				padding:0;
+				float:left;
+			}
+			.menu-accueil
+			{
+				background-image:url('../images/menu/accueil.png');
+				&:hover
+				{
+					background-image:url('../images/menu/accueil_hover.png');
+				}
+			}
+			.menu-actions
+			{
+				background-image:url('../images/menu/actions.png');
+				&:hover
+				{
+					background-image:url('../images/menu/actions_hover.png');
+				}
+			}
+			.menu-actus
+			{
+				background-image:url('../images/menu/actu.png');
+				&:hover
+				{
+					background-image:url('../images/menu/actu_hover.png');
+				}
+			}
+			.menu-adherents
+			{
+				background-image:url('../images/menu/adhérents.png');
+				&:hover
+				{
+					background-image:url('../images/menu/adhérents_hover.png');
+				}
+			}
+			.menu-charte
+			{
+				background-image:url('../images/menu/charte.png');
+				&:hover
+				{
+					background-image:url('../images/menu/charte_hover.png');
+				}
+			}
+			.menu-gallerie
+			{
+				background-image:url('../images/menu/galerie.png');
+				&:hover
+				{
+					background-image:url('../images/menu/galerie_hover.png');
+				}
+			}
+			.menu-contact
+			{
+				background-image:url('../images/menu/contact.png');
+				&:hover
+				{
+					background-image:url('../images/menu/contact_hover.png');
+				}
+			}
+		}
 	}
 }
 
-.container
+.text-center
+{
+	text-align:center;
+}
+
+.main-container
 {
 	min-height:400px;
 }
@@ -28,11 +172,25 @@ header
 footer
 {
 	width:100%;
-	background-color:@second_color;
-	color:@first_color;
-	.hero-unit
+	height:220px;
+	background-image: url('../images/footer.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align:center;
+	color:white;
+	text-shadow:0px 0px 4px black;
+	.footer-up
 	{
-		background-color:transparent;
-		margin-bottom:0;
+		height:132px;
+		padding-top:40px;
+		width:920px;
+		margin:auto;
+	}
+	.footer-down
+	{
+		height:38px;
+		padding-top:10px;
+		width:960px;
+		margin:auto;
 	}
 }

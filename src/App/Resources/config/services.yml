@@ -5,6 +5,7 @@ parameters:
     app.form_type.menu.class: "App\\Form\\MenuType"
     app.form_type.widget.class: "App\\Form\\WidgetType"
     app.twig.bootstrap_helper_extension.class: "App\\Twig\\BootstrapHelperExtension"
+    app.twig.slider_extension.class: "App\\Twig\\SliderExtension"
 
 services:
     app.widget_container:
@@ -32,5 +33,11 @@ services:
         class: %app.twig.bootstrap_helper_extension.class%
         calls:
             - [ 'setContainer', [@service_container] ]
+        tags:
+            - {name: twig.extension}
+    app.twig.slider_extension:
+        class: %app.twig.slider_extension.class%
+        calls:
+            - ['setContainer', [@service_container]]
         tags:
             - {name: twig.extension}

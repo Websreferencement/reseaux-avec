@@ -10,7 +10,6 @@ namespace App\Manager;
 use App\Model\WidgetInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use App\Exception\WidgetNotFoundException;
-use Iterator;
 
 /**
  * WidgetManager
@@ -18,22 +17,8 @@ use Iterator;
  * This manager provides an entire list of widgets
  * @author David Jegat <david.jegat@gmail.com>
  */
-class WidgetContainer implements Iterator
+class WidgetContainer implements AbstractContainer
 {
-	/**
-	 * @var array $widgets
-	 */
-	private $widgets;
-
-	/**
-	 * @var ContainerInterface $container
-	 */
-	private $container;
-
-	/**
-	 * @var integer $iterator
-	 */
-	private $iterator;
 
 	/**
 	 * Get widgets
@@ -42,7 +27,7 @@ class WidgetContainer implements Iterator
 	 */
 	public function getWidgets()
 	{
-		return $this->widgets;
+		return $this->contents;
 	}
 	
 	/**
@@ -53,7 +38,7 @@ class WidgetContainer implements Iterator
 	 */
 	public function addWidget(WidgetInterface $widget)
 	{
-		$this->widgets[] = $widget;
+		$this->contents[] = $widget;
 	
 		return $this;
 	}
@@ -66,8 +51,8 @@ class WidgetContainer implements Iterator
 	 */
 	public function hasWidget($widget)
 	{
-		foreach($this->widgets as $item){
-			if($widget instanceof WidgetManagerInterface and $item === $widget){
+		foreach($this->contents as $item){
+			if($widget instanceof WidgetInterface and $item === $widget){
 	
 				return true;
 			} else if(is_string($widget) and $item->getName() === $widget) {
@@ -87,7 +72,7 @@ class WidgetContainer implements Iterator
 	 */
 	public function getWidget($widget)
 	{
-		foreach($this->widgets as $item){
+		foreach($this->contents as $item){
 			if($widget instanceof WidgetInterface and $item === $widget){
 	
 				return $item;
@@ -115,63 +100,5 @@ class WidgetContainer implements Iterator
 
 		return $this->container->get('templating')
 			->render('App:Widget:'.$w->getTemplate(), $w->getTemplateArguments());
-	}
-
-	/**
-	 * Sort the current
-	 * 
-	 * @return Widget
-	 */
-	public function current()
-	{
-		return $this->widgets[$this->iterator];
-	}
-
-	/**
-	 * return the current key
-	 * 
-	 * @return integer
-	 */
-	public function key()
-	{
-		return $this->iterator;
-	}
-
-	/**
-	 * increment iterator
-	 */
-	public function next()
-	{
-		++$this->iterator;
-	}
-
-	/**
-	 * Reset the iterator
-	 */
-	public function rewind()
-	{
-		$this->iterator = 0;
-	}
-
-	/**
-	 * Test if the current iterator offset exists
-	 * 
-	 * @return boolean
-	 */
-	public function valid()
-	{
-		return isset($this->widgets[$this->iterator]);
-	}
-
-	/**
-	 * default constructor for the WidgetManager
-	 * 
-	 * @param ContainerInterface $container
-	 */
-	public function __construct(ContainerInterface $container)
-	{
-		$this->widgets = array();
-		$this->container = $container;
-		$this->iterator = 0;
 	}
 }

@@ -5,8 +5,98 @@
     <meta name="description" content="{% block description '' %}">
 {% endblock headers %}
 
+{% block stylesheets %}
+	{{parent()}}
+	{% 
+		stylesheets 
+		'bundles/app/css/*.less'
+		filter="lessphp, cssrewrite, ?minify_css"
+	%}
+
+		<link rel="stylesheet" href="{{asset_url}}" media="screen" >
+
+	{% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	{%
+		javascripts
+		'bundles/app/js/src/*.js'
+		'bundles/app/js/main.js'
+		filter="?minify_js"
+	%}
+		<script src="{{asset_url}}"></script>
+	{% endjavascripts %}
+
+{% endblock %}
+
 {% block body %}
-    <div class="container">
-        {% block content '' %}
+	
+	<header>
+		{% block header %}
+			{% block slider %}
+				<div id="slider" data-slider="{{slider_assets()}}">
+					<div class="slider-content"></div>
+				</div>
+				<div class="arrow-left"></div>
+				<div class="arrow-right"></div>
+			{% endblock %}
+			<div class="unit">
+				<img src="{{asset('bundles/app/images/header/text.png')}}"
+					 alt="Réseaux AVEC - Allier Vellay ECO construction" />
+			</div>
+			<nav id="menu" role="navigation">
+				{% include 'App::_menu.html.twig' %}
+			</nav>
+		{% endblock %}
+	</header>
+
+
+	<div class="container main-container">
+        {% block content %}
+        	<div class="row">
+        		<div class="span3">
+        			{% block sidebar %}
+        				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        			{% endblock %}
+        		</div>
+        		<div class="span9">
+        			{% block page %}
+        				<h1>Foo</h1>
+
+        				<p>
+        					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        				</p>
+        			{% endblock %}
+        		</div>
+        	</div>
+        {% endblock %}
     </div>
+
+	<footer>
+		{% block footer %}
+		    <p class="footer-up">
+		    	CE SITE VOUS EST PROPOSÉ PAR <br />
+		    	<strong>Réseau AVEC</strong> <br />
+		    	chemin des Grandes 43100 VIEILLE BRIOUDE <br />
+		    	Répondeur - fax : 09 72 11 51 83 - contact@reseaux-avec.fr 
+		    </p>
+		    <p class="footer-down">
+		    	copyright © 2011 Tous droits réservés. - Mentions légales - 
+		    	Concepteur et administrateur du site : Webs Generation Internet www.webs-creation-logo.fr
+		   	</p>
+		{% endblock %}
+	</footer>
+
 {% endblock %}
