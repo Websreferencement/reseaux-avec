@@ -98,6 +98,8 @@ class WidgetContainer extends AbstractContainer
 			throw new WidgetNotFoundException('No widget has been found for the current page :(');
 		}
 
+		$w->initialize();
+
 		return $this->container->get('templating')
 			->render('App:Widget:'.$w->getTemplate(), $w->getTemplateArguments());
 	}

@@ -61,13 +61,6 @@ class Page implements ListableDatasInterface
 	private $priority;
 
 	/**
-	 * @var Menu $menu
-	 *
-	 * @ORM\OneToOne(targetEntity="Menu", inversedBy="page")
-	 */
-	private $menu;
-
-	/**
 	 * @var array $widgets
 	 * 
 	 * @ORM\Column(type="array")
@@ -215,29 +208,6 @@ class Page implements ListableDatasInterface
 	public function setPriority($priority)
 	{
 		$this->priority = $priority;
-	
-		return $this;
-	}
-
-	/**
-	 * Get menu
-	 * 
-	 * @return Menu
-	 */
-	public function getMenu()
-	{
-		return $this->menu;
-	}
-	
-	/**
-	 * Set menu
-	 *
-	 * @param Menu $menu
-	 * @return Page
-	 */
-	public function setMenu(Menu $menu)
-	{
-		$this->menu = $menu;
 	
 		return $this;
 	}

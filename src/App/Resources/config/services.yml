@@ -6,6 +6,7 @@ parameters:
     app.form_type.widget.class: "App\\Form\\WidgetType"
     app.twig.bootstrap_helper_extension.class: "App\\Twig\\BootstrapHelperExtension"
     app.twig.slider_extension.class: "App\\Twig\\SliderExtension"
+    app.twig.widget_extension.class: "App\\Twig\\WidgetExtension"
     app.sidebar_container.class: "App\\Manager\\SidebarContainer"
     app.form_type.sidebar.class: "App\\Form\\SidebarType"
 
@@ -48,6 +49,12 @@ services:
             - {name: twig.extension}
     app.twig.slider_extension:
         class: %app.twig.slider_extension.class%
+        calls:
+            - ['setContainer', [@service_container]]
+        tags:
+            - {name: twig.extension}
+    app.twig.widget_extension:
+        class: %app.twig.widget_extension.class%
         calls:
             - ['setContainer', [@service_container]]
         tags:

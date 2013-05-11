@@ -16,4 +16,9 @@ class AccueilSidebar extends AbstractWidget
 	{
 		return 'accueil';
 	}
+
+	public function initialize()
+	{
+		return;
+	}
 }

@@ -2,10 +2,6 @@
 
 App:Admin:index: /admin
 
-App:Menu:
-    prefix: /admin/menu
-    resources: [edit, update, delete]
-
 App:Page: 
     prefix: /admin/page
     resources: [edit, update, delete]

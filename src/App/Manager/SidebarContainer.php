@@ -84,6 +84,8 @@ class SidebarContainer extends AbstractContainer
 			throw new WidgetNotFoundException('No sidebar has been found for the current page :(');
 		}
 
+		$w->initialize();
+
 		return $this->container->get('templating')
 			->render('App:Sidebar:'.$w->getTemplate(), $w->getTemplateArguments());
 	}

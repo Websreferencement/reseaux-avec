@@ -36,4 +36,9 @@ interface WidgetInterface
 	 * @return array
 	 */
 	public function getTemplateArguments();
+
+	/**
+	 * Initialize a widget
+	 */
+	public function initialize();
 }

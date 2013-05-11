@@ -16,4 +16,9 @@ class TestWidget extends AbstractWidget
 	{
 		return 'test';
 	}
+
+	public function initialize()
+	{
+		return;
+	}
 }
