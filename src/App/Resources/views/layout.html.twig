@@ -43,24 +43,30 @@
 				<div class="arrow-right"></div>
 			{% endblock %}
 			<div class="unit">
-				<img src="{{asset('bundles/app/images/header/text.png')}}"
-					 alt="Réseaux AVEC - Allier Vellay ECO construction" />
+				{% block unit %}
+					<img src="{{asset('bundles/app/images/header/text.png')}}"
+						 alt="Réseaux AVEC - Allier Vellay ECO construction" />
+				{% endblock %}
 			</div>
 			<nav id="menu" role="navigation">
-				{% include 'App::_menu.html.twig' %}
+				{% block menu %}
+					{% include 'App::_menu.html.twig' %}
+				{% endblock %}
 			</nav>
 		{% endblock %}
 	</header>
 
 	<div class="container main-container">
-        {% block content %}
+		{% block container %}
         	<div class="row content">
+        	{% block content %}
         		<div class="span3">
         			{% block sidebar '' %}
         		</div>
         		<div class="span9">
         			{% block page '' %}
         		</div>
+       		{% endblock %}
         	</div>
         {% endblock %}
     </div>
@@ -68,14 +74,18 @@
 	<footer>
 		{% block footer %}
 		    <p class="footer-up">
-		    	CE SITE VOUS EST PROPOSÉ PAR <br />
-		    	<strong>Réseau AVEC</strong> <br />
-		    	chemin des Grandes 43100 VIEILLE BRIOUDE <br />
-		    	Répondeur - fax : 09 72 11 51 83 - contact@reseaux-avec.fr 
+		    	{% block footer_up %}
+			    	CE SITE VOUS EST PROPOSÉ PAR <br />
+			    	<strong>Réseau AVEC</strong> <br />
+			    	chemin des Grandes 43100 VIEILLE BRIOUDE <br />
+			    	Répondeur - fax : 09 72 11 51 83 - contact@reseaux-avec.fr
+			    {% endblock %}
 		    </p>
 		    <p class="footer-down">
-		    	copyright © 2011 Tous droits réservés. - Mentions légales - 
-		    	Concepteur et administrateur du site : Webs Generation Internet www.webs-creation-logo.fr
+		    	{% block footer_down %}
+			    	copyright © 2011 Tous droits réservés. - Mentions légales - 
+			    	Concepteur et administrateur du site : Webs Generation Internet www.webs-creation-logo.fr
+			    {% endblock %}
 		   	</p>
 		{% endblock %}
 	</footer>

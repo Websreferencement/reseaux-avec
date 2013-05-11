@@ -303,7 +303,8 @@ class Page implements ListableDatasInterface
 	public function getListFields()
 	{
 		return array(
-			'title' => $this->title
+			'Titre de la page' => $this->title,
+			'Uri' => $this->uri
 		);
 	}
 

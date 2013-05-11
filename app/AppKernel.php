@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Gregwar\ImageBundle\GregwarImageBundle(),
             new DavidJegat\AsseticMinifierBundle\DavidJegatAsseticMinifierBundle(),
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new App\App(),
         );
 

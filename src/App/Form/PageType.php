@@ -28,7 +28,7 @@ class PageType extends AbstractType
 				),
 				'label' => 'Titre de la page'
 			))
-			->add('content', 'textarea', array(
+			->add('content', 'ckeditor', array(
 				'label' => 'Contenue de cette page'
 			))
 			->add('widgets', 'widget')
