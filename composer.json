@@ -37,7 +37,8 @@
         "gregwar/image-bundle": "*",
         "coresphere/console-bundle": "*",
         "Trsteel/ckeditor-bundle": "dev-master",
-        "jbroadway/urlify": "dev-master"
+        "jbroadway/urlify": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master"
     },
     "require-dev": {
         "behat/behat": "2.4.*",

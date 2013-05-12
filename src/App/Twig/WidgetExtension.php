@@ -23,11 +23,14 @@ class WidgetExtension extends Twig_Extension
 	public function displayWidgets(Page $page)
 	{
 		$widgets = $page->getWidgets();
+		if(!$widgets){
+			return;
+		}
 		$rendering = '';
 		$container = $this->container->get('app.widget_container');
 
 		foreach($widgets as $w){
-			$rendering = $cotainer->render($w);
+			$rendering = $container->render($w);
 		}
 
 		return $rendering;

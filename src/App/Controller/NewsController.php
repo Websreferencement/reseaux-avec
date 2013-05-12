@@ -70,8 +70,15 @@ class NewsController extends Controller
 		return $this->redirectToRoute('app_news_index');
 	}
 
-	public function showAction($title)
+	public function showAction($uri)
 	{
-		
+		$news = $this->findOr404('App:News', array('uri' => $uri));
+
+		$page = $this->findOr404('App:Page', array('uri' => '/actualites'));
+
+		return array(
+			'page' => $page,
+			'news' => $news
+		);
 	}
 }

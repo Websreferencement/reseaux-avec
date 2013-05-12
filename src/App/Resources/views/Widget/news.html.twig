@@ -1,0 +1,28 @@
+{% if not news %}
+
+<p class="well well-large">
+	Aucune actualités n'a encore était publiée.
+</p>
+
+{% else %}
+
+	{% block news_pagination %}
+		<div class="pagination">
+			{{knp_pagination_render(news)}}
+		</div>
+	{% endblock %}
+
+	{% for actu in news %}
+	    <div class="page_header">
+	    	<h3>{{actu.title}} <small> - actualité du {{actu.createdAt}}</small></h3>
+	    </div>
+	    <p>{{actu.description}}</p>
+	    <a class="btn" href="{{path('app_news_show', {'uri': actu.uri})}}">Lire la suite</a>
+	    {% if not loop.last %}
+	    	<hr/>
+	    {% endif %}
+	{% endfor %}
+
+	{{block('news_pagination')}}
+
+{% endif %}

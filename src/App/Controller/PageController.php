@@ -71,14 +71,15 @@ class PageController extends Controller
 		return $this->redirectToRoute('app_page_index');
 	}
 
-	public function homeAction($page)
+	public function homeAction($uri)
 	{
-		$page = '/'.$page;
+		$uri = '/'.$uri;
 
-		$page = $this->findOr404('App:Page', array('uri' => $page));
+		$page = $this->findOr404('App:Page', array('uri' => $uri));
 
 		return array(
-			'page' => $page
+			'page' => $page,
+			'uri' => $uri
 		);
 	}
 }

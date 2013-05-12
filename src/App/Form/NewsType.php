@@ -25,6 +25,9 @@ class NewsType extends AbstractType
 			->add('title', 'text', array(
 				'label' => 'Titre de l\'actualité'
 			))
+			->add('description', 'textarea', array(
+				'label' => 'Courte description de cette actualité'
+			))
 			->add('content', 'ckeditor', array(
 				'label' => 'Contenue de votre actualité'
 			))

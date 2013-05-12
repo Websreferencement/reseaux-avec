@@ -1,18 +1,18 @@
 <ul class="visible-desktop">
 
-    <li><a href="{{path('frontend', {'page':''})}}" class="menu-item menu-accueil"></a></li>
+    <li><a href="{{path('frontend', {'uri':''})}}" class="menu-item menu-accueil"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'charte'})}}" class="menu-item menu-charte"></a></li>
+    <li><a href="{{path('frontend', {'uri':'charte'})}}" class="menu-item menu-charte"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'actions'})}}" class="menu-item menu-actions"></a></li>
+    <li><a href="{{path('frontend', {'uri':'actions'})}}" class="menu-item menu-actions"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'actualites'})}}" class="menu-item menu-actus"></a></li>
+    <li><a href="{{path('frontend', {'uri':'actualites'})}}" class="menu-item menu-actus"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'galeries'})}}" class="menu-item menu-gallerie"></a></li>
+    <li><a href="{{path('frontend', {'uri':'galeries'})}}" class="menu-item menu-gallerie"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'adherents'})}}" class="menu-item menu-adherents"></a></li>
+    <li><a href="{{path('frontend', {'uri':'adherents'})}}" class="menu-item menu-adherents"></a></li>
 
-    <li><a href="{{path('frontend', {'page':'contact'})}}" class="menu-item menu-contact"></a></li>
+    <li><a href="{{path('frontend', {'uri':'contact'})}}" class="menu-item menu-contact"></a></li>
 
 </ul>
 
@@ -27,7 +27,7 @@
 		'adherents'  : 'Adhérents',
 		'contact'    : 'Contact'
 	} %}
-		<option value="{{url('frontend', {'page': uri})}}" {% if "/"~uri == page.uri %}selected{% endif %}>{{name}}</option>
+		<option value="{{url('frontend', {'uri': uri})}}" {% if "/"~uri == page.uri %}selected{% endif %}>{{name}}</option>
 
 	{% endfor %}
 

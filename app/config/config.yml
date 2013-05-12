@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -70,3 +70,7 @@ swiftmailer:
 trsteel_ckeditor:
     force_paste_as_plaintext: true
     language: fr
+
+knp_paginator:
+    template:
+        pagination:           KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig

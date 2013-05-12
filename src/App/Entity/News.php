@@ -37,6 +37,13 @@ class News implements ListableDatasInterface
 	private $uri;
 
 	/**
+	 * @var string $description
+	 *
+	 * @ORM\Column(type="text")
+	 */
+	private $description;
+
+	/**
 	 * @var string $content
 	 *
 	 * @ORM\Column(type="text")
@@ -92,6 +99,29 @@ class News implements ListableDatasInterface
 	public function setTitle($title)
 	{
 		$this->title = $title;
+	
+		return $this;
+	}
+
+	/**
+	 * Get description
+	 * 
+	 * @return string
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+	
+	/**
+	 * Set description
+	 *
+	 * @param string $description
+	 * @return News
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
 	
 		return $this;
 	}
