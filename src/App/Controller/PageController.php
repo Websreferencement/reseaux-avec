@@ -48,7 +48,7 @@ class PageController extends Controller
 			$this->persist($page);
 			$this->flush();
 
-			$this->addFalsh('Page '.$page.' éditée avec succés !');
+			$this->addFlash('Page '.$page.' éditée avec succés !');
 
 			return $this->redirectToRoute('app_page_index');
 		}

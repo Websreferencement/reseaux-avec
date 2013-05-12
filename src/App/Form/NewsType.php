@@ -2,12 +2,11 @@
 
 namespace App\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class MenuType extends AbstractType
+class NewsType extends AbstractType
 {
 	/**
 	 * @var ContainerInterface $container
@@ -15,7 +14,7 @@ class MenuType extends AbstractType
 	private $container;
 
 	/**
-	 * Build forms
+	 * Build the form
 	 * 
 	 * @param FormBuilderInterface $builder
 	 * @param array $options
@@ -23,18 +22,13 @@ class MenuType extends AbstractType
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('name', 'text', array(
-				'label' => 'Nom de votre menu'
+			->add('title', 'text', array(
+				'label' => 'Titre de l\'actualité'
 			))
-			->add('parent', 'entity', array(
-				'label' => 'Menu parent',
-				'class' => 'App\\Entity\\Menu',
-				'required' => false
+			->ad('content', 'ckeditor', array(
+				'label' => 'Contenue de votre actualité'
 			))
-			->add('page', 'entity', array(
-				'label' => 'Page de ce menu',
-				'class' => 'App\\Entity\\Page'
-			));
+		;
 	}
 
 	/**
@@ -48,12 +42,12 @@ class MenuType extends AbstractType
 	}
 
 	/**
-	 * Return the menu name
+	 * Identify this form
 	 * 
 	 * @return string
 	 */
 	public function getName()
 	{
-		return 'menu';
+		return 'news';
 	}
 }
