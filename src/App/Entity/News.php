@@ -111,7 +111,7 @@ class News implements ListableDatasInterface
 	}
 
 	/**
-	 * @ORM\prePersist
+	 * @ORM\PrePersist
 	 */
 	public function updateCreatedAt()
 	{
