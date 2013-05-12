@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use App\Model\ListableDatasInterface;
+use URLify;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\NewsRepository")
@@ -28,6 +30,13 @@ class News implements ListableDatasInterface
 	private $title;
 
 	/**
+	 * @var string $uri
+	 *
+	 * @ORM\Column(type="string", length=250)
+	 */
+	private $uri;
+
+	/**
 	 * @var string $content
 	 *
 	 * @ORM\Column(type="text")
@@ -40,6 +49,29 @@ class News implements ListableDatasInterface
 	 * @ORM\Column(type="datetime")
 	 */
 	private $createdAt;
+
+	/**
+	 * Get id
+	 * 
+	 * @return integer
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+	
+	/**
+	 * Set id
+	 *
+	 * @param integer $id
+	 * @return News
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
+	
+		return $this;
+	}
 
 	/**
 	 * Get title
@@ -60,6 +92,29 @@ class News implements ListableDatasInterface
 	public function setTitle($title)
 	{
 		$this->title = $title;
+	
+		return $this;
+	}
+
+	/**
+	 * Get uri
+	 * 
+	 * @return string
+	 */
+	public function getUri()
+	{
+		return $this->uri;
+	}
+	
+	/**
+	 * Set uri
+	 *
+	 * @param string $uri
+	 * @return News
+	 */
+	public function setUri($uri)
+	{
+		$this->uri = $uri;
 	
 		return $this;
 	}
@@ -90,11 +145,11 @@ class News implements ListableDatasInterface
 	/**
 	 * Get createdAt
 	 * 
-	 * @return DateTime
+	 * @return string
 	 */
 	public function getCreatedAt()
 	{
-		return $this->createdAt;
+		return $this->createdAt->format('d/m/Y à H:i');
 	}
 	
 	/**
@@ -113,9 +168,10 @@ class News implements ListableDatasInterface
 	/**
 	 * @ORM\PrePersist
 	 */
-	public function updateCreatedAt()
+	public function prePersit()
 	{
 		$this->createdAt = new DateTime('now');
+		$this->uri = URLify::filter($this->getTitle());
 	}
 
 	public function getListFields()
@@ -124,6 +180,16 @@ class News implements ListableDatasInterface
 			'Titre de l\'actualité' => $this->getTitle(),
 			'Créé le' => $this->getCreatedAt()
 		);
+	}
+
+	/**
+	 * String representation
+	 * 
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->getTitle();
 	}
 
 	/**

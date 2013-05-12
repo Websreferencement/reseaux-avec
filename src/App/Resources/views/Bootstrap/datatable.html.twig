@@ -25,7 +25,11 @@
 					{% endfor %}
 						<td>
 							<a href="{{ path(routes.edit, {'id' : data.id}) }}" class="btn btn-mini">éditer</a>
-							<a href="{{ path(routes.delete, {'id' : data.id}) }}" class="btn btn-mini btn-danger">supprimer</a>
+							<form method="POST" action="{{ path(routes.delete, {'id' : data.id}) }}" 
+								onsubmit="return confirm('Êtes vous sur ?')">
+								<input type="hidden" name="_method" value="DELETE" />
+								<input type="submit" class="btn btn-mini btn-danger" value="supprimer" />
+							</form>
 						</td>
 				</tr>
 			{% endfor %}

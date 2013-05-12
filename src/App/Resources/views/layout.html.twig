@@ -5,6 +5,8 @@
     <meta name="description" content="{% block description '' %}">
 {% endblock headers %}
 
+{% block flashes '' %}
+
 {% block stylesheets %}
 	{{parent()}}
 	{% 
@@ -57,6 +59,14 @@
 	</header>
 
 	<div class="container main-container">
+		{% block flash %}
+			 {% flashes %}
+		        <div class="flashes alert alert-{{ type }}">
+		            <button type="button" class="close" data-dismiss="alert">&times;</button>
+		            {{ message }}
+		        </div>
+		    {% endflashes %}
+		{% endblock %}
 		{% block container %}
         	<div class="row content">
         	{% block content %}

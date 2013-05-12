@@ -28,7 +28,7 @@ class PageController extends Controller
 			$this->persist($page);
 			$this->flush();
 
-			$this->addFlash('Page '.$page.' créée avec succés !');
+			$this->addFlash('info', 'Page '.$page.' créée avec succés !');
 
 			return $this->redirectToRoute('app_page_index');
 		}
@@ -48,7 +48,7 @@ class PageController extends Controller
 			$this->persist($page);
 			$this->flush();
 
-			$this->addFlash('Page '.$page.' éditée avec succés !');
+			$this->addFlash('info', 'Page '.$page.' éditée avec succés !');
 
 			return $this->redirectToRoute('app_page_index');
 		}
@@ -66,7 +66,7 @@ class PageController extends Controller
 		$this->remove($page);
 		$this->flush();
 
-		$this->addFlash('Page '.$page.' suprimée avec succés !');
+		$this->addFlash('info', 'Page '.$page.' suprimée avec succés !');
 
 		return $this->redirectToRoute('app_page_index');
 	}

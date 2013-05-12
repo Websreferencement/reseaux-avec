@@ -27,7 +27,7 @@ class NewsController extends Controller
 			$this->persist($news);
 			$this->flush();
 
-			$this->addFlash('Actualité '.$news.' créée avec succés !');
+			$this->addFlash('info', 'Actualité '.$news.' créée avec succés !');
 
 			return $this->redirectToRoute('app_news_index');
 		}
@@ -47,7 +47,7 @@ class NewsController extends Controller
 			$this->persist($news);
 			$this->flush();
 
-			$this->addFlash('Actualité '.$news.' éditée avec succés !');
+			$this->addFlash('info', 'Actualité '.$news.' éditée avec succés !');
 
 			return $this->redirectToRoute('app_news_index');
 		}
@@ -65,8 +65,13 @@ class NewsController extends Controller
 		$this->remove($news);
 		$this->flush();
 
-		$this->addFlash('Actualité '.$news.' suprimée avec succés !');
+		$this->addFlash('info', 'Actualité '.$news.' suprimée avec succés !');
 
 		return $this->redirectToRoute('app_news_index');
+	}
+
+	public function showAction($title)
+	{
+		
 	}
 }
