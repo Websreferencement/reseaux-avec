@@ -1,4 +1,4 @@
-<ul>
+<ul class="visible-desktop">
 
     <li><a href="{{path('frontend', {'page':''})}}" class="menu-item menu-accueil"></a></li>
 
@@ -15,3 +15,20 @@
     <li><a href="{{path('frontend', {'page':'contact'})}}" class="menu-item menu-contact"></a></li>
 
 </ul>
+
+<select class="hidden-desktop" id="responsive-menu">
+
+	{% for uri, name in {
+		''           : 'Accueil',
+		'charte'     : 'Charte',
+		'actions'    : 'Actions',
+		'actualites' : 'Actualités',
+		'galeris'    : 'Galeries',
+		'adherents'  : 'Adhérents',
+		'contact'    : 'Contact'
+	} %}
+		<option value="{{url('frontend', {'page': uri})}}" {% if "/"~uri == page.uri %}selected{% endif %}>{{name}}</option>
+
+	{% endfor %}
+
+</select>

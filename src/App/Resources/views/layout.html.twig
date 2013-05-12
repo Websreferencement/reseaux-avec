@@ -39,8 +39,8 @@
 				<div id="slider" data-slider="{{slider_assets()}}">
 					<div class="slider-content"></div>
 				</div>
-				<div class="arrow-left"></div>
-				<div class="arrow-right"></div>
+				<div class="arrow-left hidden-phone"></div>
+				<div class="arrow-right hidden-phone"></div>
 			{% endblock %}
 			<div class="unit">
 				{% block unit %}
@@ -72,22 +72,24 @@
     </div>
 
 	<footer>
-		{% block footer %}
-		    <p class="footer-up">
-		    	{% block footer_up %}
-			    	CE SITE VOUS EST PROPOSÉ PAR <br />
-			    	<strong>Réseau AVEC</strong> <br />
-			    	chemin des Grandes 43100 VIEILLE BRIOUDE <br />
-			    	Répondeur - fax : 09 72 11 51 83 - contact@reseaux-avec.fr
-			    {% endblock %}
-		    </p>
-		    <p class="footer-down">
-		    	{% block footer_down %}
-			    	copyright © 2011 Tous droits réservés. - Mentions légales - 
-			    	Concepteur et administrateur du site : Webs Generation Internet www.webs-creation-logo.fr
-			    {% endblock %}
-		   	</p>
-		{% endblock %}
+		<div class="container">
+			{% block footer %}
+			    <p class="footer-up">
+			    	{% block footer_up %}
+				    	CE SITE VOUS EST PROPOSÉ PAR <br />
+				    	<strong>Réseau AVEC</strong> <br />
+				    	chemin des Grandes 43100 VIEILLE BRIOUDE <br />
+				    	Répondeur - fax : 09 72 11 51 83 - contact@reseaux-avec.fr
+				    {% endblock %}
+			    </p>
+			    <p class="footer-down">
+			    	{% block footer_down %}
+				    	copyright © 2011 Tous droits réservés. - Mentions légales - 
+				    	Concepteur et administrateur du site : Webs Generation Internet www.webs-creation-logo.fr
+				    {% endblock %}
+			   	</p>
+			{% endblock %}
+		</div>
 	</footer>
 
 {% endblock %}
