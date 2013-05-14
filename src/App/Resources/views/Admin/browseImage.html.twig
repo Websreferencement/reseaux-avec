@@ -1,0 +1,43 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+
+	{{parent()}}
+
+	<script>
+jQuery(function($){
+
+	$('.browse-img-preview').click(function(){
+		var url = $(this).attr('data-url');
+		window.opener.CKEDITOR.tools.callFunction({{callback}}, url);
+		window.close();
+	});
+
+});
+	</script>
+
+{% endblock %}
+
+{% block stylesheets %}
+	{% 
+		stylesheets 
+		'bundles/app/css/*.less'
+		filter="lessphp, cssrewrite, ?minify_css"
+	%}
+
+		<link rel="stylesheet" href="{{asset_url}}" media="screen" >
+
+	{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+
+	{% for file in files %}
+
+		<div class="browse-img-preview" data-url="http://{{app.request.host ~ asset('uploaded/'~file.filename)}}">
+			<img src="{{ asset('uploaded/'~file.filename) }}" alt="img" />
+		</div>
+
+	{% endfor %}
+
+{% endblock %}

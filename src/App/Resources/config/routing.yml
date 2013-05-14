@@ -17,6 +17,14 @@ app_news_show:
     requirements:
         uri: (.*)
 
+App:Admin:browseImage: /browse-ckeditor-image
+
+app_upload_ckeditor_image:
+    pattern: '/upload_ckeditor_image'
+    defaults:
+        _controller: App:Admin:uploadImage
+    methods: POST
+
 # homepage:
 #     pattern: /
 #     defaults: { _controller: FrameworkBundle:Template:template, template: 'App::homepage.html.twig' }

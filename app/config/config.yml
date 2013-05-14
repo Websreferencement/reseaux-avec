@@ -70,6 +70,11 @@ swiftmailer:
 trsteel_ckeditor:
     force_paste_as_plaintext: true
     language: fr
+    customConfig: bundles/app/js/ckeditor/config.js
+    filebrowser_image_browse_url:
+        route: app_admin_browseImage
+    filebrowser_image_upload_url:
+        route: app_upload_ckeditor_image
 
 knp_paginator:
     template:
