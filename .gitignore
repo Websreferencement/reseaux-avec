@@ -9,3 +9,4 @@ web/js/*
 vendor/*
 composer.lock
 app/config/security.yml
+web/uploaded

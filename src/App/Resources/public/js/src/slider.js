@@ -82,7 +82,7 @@ $.fn.djegSlider = function()
 			animation.opacity = 0;
 		}
 
-		sliderBlock.css(css).animate(animation, 1000, callback);
+		sliderBlock.css(css).animate(animation, 250, callback);
 
 	}
 
