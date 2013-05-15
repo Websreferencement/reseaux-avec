@@ -1,0 +1,17 @@
+{% block image_preview_widget %}
+	<input type="file" {% image_src is defined %}data-src="{{asset(image_src)}}"{% endif %} {{block('widget_container_attributes')}} />
+
+	{% if image_src is defined %}
+		<img src="{{asset(image_src)}}" />
+	{% endif %}
+{% endblock %}
+
+{% block video_preview_widget %}
+    {{ block('textarea_widget') }}
+
+    {% if video_embed is not defined %}
+    	<button class="btn">Tester cette vidéo</button>
+    {% else %}
+    	{{video_embed|raw}}
+    {% endif %}
+{% endblock %}

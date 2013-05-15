@@ -9,6 +9,8 @@ parameters:
     app.twig.widget_extension.class: "App\\Twig\\WidgetExtension"
     app.sidebar_container.class: "App\\Manager\\SidebarContainer"
     app.form_type.sidebar.class: "App\\Form\\SidebarType"
+    app.form_type.media_category.class: "App\\Form\\MediaCategoryType"
+    app.form_type.image_preview.class: "App\\Form\\ImagePreviewType"
 
 services:
     app.widget_container:
@@ -41,6 +43,10 @@ services:
             - ['setContainer', [@service_container]]
         tags:
             - {name: form.type, alias: 'sidebar'}
+    app.form.image_preview_type:
+        class: %app.form_type.image_preview.class%
+        tags:
+            - {name: form.type, alias: 'image_preview'}
     app.twig.bootstrap_helper_extension:
         class: %app.twig.bootstrap_helper_extension.class%
         calls:
@@ -59,3 +65,9 @@ services:
             - ['setContainer', [@service_container]]
         tags:
             - {name: twig.extension}
+    app.form.media_category_type:
+        class: %app.form_type.media_category.class%
+        arguments:
+            - @service_container
+        tags:
+            - {name: form.type, alias: media_category}
