@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity
@@ -98,5 +99,12 @@ class Video
 		$this->name = $name;
 	
 		return $this;
+	}
+
+	public function getListFields()
+	{
+		return array(
+			'nom de la vidéo' => $this->getName()
+		);
 	}
 }

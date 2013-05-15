@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\MediaCategoryEntity")
@@ -201,5 +202,12 @@ class MediaCategory
 		}
 	
 		return $this;
+	}
+
+	public function getListFields()
+	{
+		return array(
+			'Nom de la catégorie' => $this->getTitle(),
+		);
 	}
 }

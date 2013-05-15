@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use URLify;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\ImageRepository")
@@ -256,5 +257,13 @@ class Image
 	public function getUploadDir()
 	{
 		return 'uploaded';
+	}
+
+	public function getListFields()
+	{
+		return array(
+			'Nom de l\'image' => $this->getName(),
+			'catégorie' => ($this->category) ? $this->category->getTitle() : 'Aucune'	
+		);
 	}
 }

@@ -56,7 +56,7 @@ class Page implements ListableDatasInterface
 	/**
 	 * @var integer $priority
 	 *
-	 * @ORM\Column(type="integer")
+	 * @ORM\Column(type="decimal")
 	 */
 	private $priority;
 
