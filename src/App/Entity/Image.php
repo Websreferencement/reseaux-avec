@@ -266,4 +266,9 @@ class Image
 			'catégorie' => ($this->category) ? $this->category->getTitle() : 'Aucune'	
 		);
 	}
+
+	public function __toString()
+	{
+		return $this->getName();
+	}
 }

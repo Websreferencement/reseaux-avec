@@ -1,0 +1,18 @@
+{% extends 'App::Admin/index.html.twig' %}
+
+{% block navigation %}
+	<a href="{{path('app_image_index')}}" class="btn">Revenir à la liste des images</a>
+{% endblock %}
+
+{% block content %}
+
+<form method="POST" 
+    action=" {{path('app_image_update', {'id': data.id})}} " 
+    {{ form_enctype(form) }} 
+    class="form form-horizontal">
+    {{ form_widget(form) }}
+    <input type="hidden" name="_method" value="PUT" />
+    <input type="submit" class="btn" />
+</form>
+
+{% endblock content %}
