@@ -22,6 +22,10 @@ App:Image:
     prefix: /admin/image
     resources: [edit, update, delete]
 
+App:Contact:
+    prefix: /admin/contact
+    resources: [edit, update, delete]
+
 app_news_show:
     pattern: "/actualites/{uri}"
     defaults:
