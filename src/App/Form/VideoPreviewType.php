@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ImagePreviewType extends AbstractType
+class VideoPreviewType extends AbstractType
 {
 	public function set(OptionsResolverInterface $resolver)
 	{

@@ -10,6 +10,10 @@ App:News:
     prefix: /admin/news
     resources: [edit, update, delete]
 
+App:MediaCategory:
+    prefix: /admin/category
+    resources: [edit, update, delete]
+
 app_news_show:
     pattern: "/actualites/{uri}"
     defaults:

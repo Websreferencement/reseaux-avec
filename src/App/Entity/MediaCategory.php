@@ -210,4 +210,9 @@ class MediaCategory
 			'Nom de la catégorie' => $this->getTitle(),
 		);
 	}
+
+	public function __toString()
+	{
+		return $this->getTitle();
+	}
 }
