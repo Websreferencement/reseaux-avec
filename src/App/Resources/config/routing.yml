@@ -14,6 +14,10 @@ App:MediaCategory:
     prefix: /admin/category
     resources: [edit, update, delete]
 
+App:Video:
+    prefix: /admin/video
+    resources: [edit, update, delete]
+
 App:Image:
     prefix: /admin/image
     resources: [edit, update, delete]
