@@ -1,4 +1,13 @@
-<form method="POST" action="{{ path("app_contact_new") }}">
-	{{ form_widget(contact_form) }}
-	<button class="btn btn-contact">Enyoyer !</contact>
+<form method="POST" action="{{path('app_contact_new')}}">
+	{{ form_errors(contact_form) }}
+
+	{{ form_row(contact_form.name) }}
+
+	{{ form_row(contact_form.email) }}
+
+	{{ form_row(contact_form.phone) }}
+
+	{{ form_row(contact_form.message) }}
+
+	<button class="btn btn-contact" id="send">Enyoyer !</contact>
 </form>

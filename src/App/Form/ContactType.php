@@ -29,12 +29,12 @@ class ContactType extends AbstractType
 				'label' => 'Votre adresse email*',
 				'required' => true
 			))
-			->add('phone', 'string', array(
+			->add('phone', 'text', array(
 				'label' => 'Votre numéros de téléphone',
 				'required' => false
 			))
-			->add('message', 'text', array(
-				'label' => 'Votre messge*',
+			->add('message', 'textarea', array(
+				'label' => 'Votre message*',
 				'required' => true
 			))
 		;
