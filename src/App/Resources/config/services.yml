@@ -11,6 +11,7 @@ parameters:
     app.form_type.sidebar.class: "App\\Form\\SidebarType"
     app.form_type.media_category.class: "App\\Form\\MediaCategoryType"
     app.form_type.image_preview.class: "App\\Form\\ImagePreviewType"
+    app.image_resize_listener.class: "App\\EventListener\\ImageResizeListener"
 
 services:
     app.widget_container:
@@ -71,3 +72,9 @@ services:
             - @service_container
         tags:
             - {name: form.type, alias: media_category}
+    app.image_resize_listener:
+        class: %app.image_resize_listener.class%
+        arguments:
+            - @service_container
+        tags:
+            - {name: doctrine.event_subscriber, connection: default}

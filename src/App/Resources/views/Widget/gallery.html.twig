@@ -1,1 +1,50 @@
+<div class="row">
+	<p class="span8">
+		Catégories
+	</p>
+	<div class="span4 offset">
+		<p class="category">
+			Tous
+		</p>
+		{% for category in galleries %}
+			<p class="category">
+				{{category.title}}
+			</p>
+		{% endfor %}
+	</div>
+	{% for gallery in galleries %}
+		{% set counter = 0 %}
+		{% set index = 0 %}
+		{% for image, video in gallery.imageAsKeysAndVideoAsValues %}
+			{% if counter == 0 %}
+				<div class="row">
+			{% endif %}
 
+			<div class="span2 thumb">
+				<img src="{{ asset(image.src) }}" 
+					alt="{{ image.alt}}" 
+					class="img-thumb"
+					data-category="{{ gallery.title }}"
+					data-type="image"
+					data-index="{{ index }}" />
+			</div>
+
+			<div class="span2 thumb">
+				<img src="{{ asset(video.thumbSrc) }}"
+				alt="{{ video.name }}"
+				class="img-thumb"
+				data-category="{{ gallery.title }}"
+				data-type="video"
+				data-index="{{ index + 1 }}" />
+			</div>
+
+			{% set counter = counter + 1 %}
+			{% set index = index + 2 %}
+
+			{% if counter == 2 %}
+				</div>
+				{% set counter = 0 %}
+			{% endif %}
+		{% endfor %}
+	{% endfor %1}
+</div>

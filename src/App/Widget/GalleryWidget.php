@@ -20,14 +20,8 @@ class GalleryWidget extends AbstractWidget
 	public function initialize()
 	{
 		$galleries = $this->container
-			->get('doctrine.orm.entity_manager')
-			->createQueryBuilder()
-			->select('category', 'video', 'image')
-			->from('MediaCategory', 'category')
-			->leftJoin('category.images', 'image')
-			->leftJoin('category.videos', 'video')
-			->query()
-			->getResult();
+			->get('app.entity.media_category_repository')
+			->findAllAndPopulate();
 
 		$this->args->set('galleries', $galleries);
 

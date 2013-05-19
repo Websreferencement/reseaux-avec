@@ -215,4 +215,14 @@ class MediaCategory
 	{
 		return $this->getTitle();
 	}
+
+	public function getImageAsKeysAndVideoAsValues()
+	{
+		$imagesAndVideos = array_combine(
+			$this->images->toArray(),
+			$this->videos->toArray()
+		);
+
+		return $imagesAndVideos;
+	}
 }

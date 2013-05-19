@@ -187,7 +187,8 @@ App\Entity\Page:
         headTitle: "Contact - Réseau AVEC"
         headDescription: "Réseau AVEC - ECO Construction"
         priority: 0.5
-        widgets: contact 
+        widgets: 
+            - contact
         sidebar: navigation
 App\Entity\News:
     news0:
