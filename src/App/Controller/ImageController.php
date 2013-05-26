@@ -5,16 +5,19 @@ namespace App\Controller;
 
 use Knp\RadBundle\Controller\Controller;
 use App\Entity\Image;
+use Symfony\Component\HttpFoundation\Request;
 
 class ImageController extends Controller 
 {
 	public function indexAction()
 	{
-		$images = $this->getRepository('App:Image')
-			->findAll();
+		$datas = $this
+			->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.image_repository'))
+			->setEntity('Image');
 
 		return array(
-			'images' => $images
+			'datas' => $datas
 		);
 	}
 

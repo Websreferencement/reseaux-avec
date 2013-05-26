@@ -9,11 +9,12 @@ class NewsController extends Controller
 {
 	public function indexAction()
 	{
-		$news = $this->getRepository('App:News')
-			->findAll();
+		$datas = $this->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.news_repository'))
+			->setEntity('News');
 
 		return array(
-			'news' => $news
+			'datas' => $datas
 		);
 	}
 

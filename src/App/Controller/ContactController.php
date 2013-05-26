@@ -10,11 +10,13 @@ class ContactController extends Controller
 
 	public function indexAction()
 	{
-		$contacts = $this->getRepository('App:Contact')
-			->findAll();
+		$datas = $this
+			->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.contact_repository'))
+			->setEntity('Contact');
 
 		return array(
-			'contacts' => $contacts
+			'datas' => $datas
 		);
 	}
 

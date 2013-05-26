@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use Knp\RadBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Video;
 
 class VideoController extends Controller
@@ -11,11 +12,13 @@ class VideoController extends Controller
 
 	public function indexAction()
 	{
-		$videos = $this->getRepository('App:Video')
-			->findAll();
+		$datas = $this
+			->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.video_repository'))
+			->setEntity('Video');
 
 		return array(
-			'videos' => $videos
+			'datas' => $datas
 		);
 	}
 

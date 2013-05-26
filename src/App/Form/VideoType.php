@@ -23,11 +23,24 @@ class VideoType extends AbstractType
 	{
 		$builder
 			->add('name', 'text', array(
-				'label' => 'Sitemap priorité',
+				'label' => 'Nom de cette vidéo',
 				'attr' => array(
 					'class' => 'input-large'
 				)
-			))
+            ))
+            ->add('alt', 'text', array(
+                'label' => 'Texte alternatif'
+            ))
+            ->add('content', 'textarea', array(
+                'label' => 'Code de cette vidéo'
+            ))
+            ->add('category', 'entity', array(
+                'class' => 'App:MediaCategory',
+                'label' => 'Catégorie de cette vidéo'
+            ))
+            ->add('file', 'file', array(
+                'label' => 'Miniature de la vidéo'
+            ))
 		;
 	}
 

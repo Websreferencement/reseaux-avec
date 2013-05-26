@@ -5,7 +5,7 @@ namespace App\EventListener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\Common\EventSubscriber;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\File;
+use Symfony\Component\HttpFoundation\File\File;
 use App\Entity\Image;
 use App\Entity\Video;
 
@@ -43,22 +43,29 @@ class ImageResizeListener implements EventSubscriber
 			return $this->resizeVideoThumbnail($args);
 		}
 
-		if (null === $img->getSrc()){
+		if (null === $img->getContent()){
 			return;
 		}
 
-		$file = new File($img->getWebPath().'/'.$img->getSrc());
+        $file = new File($img->getAbsolutePath());
+        $thumbnail = new File($img->getAbsoluteThumbPath());
 
 		$imageProcessor = $this->container
 			->get('image.handling')
 			->open($file->getRealPath())
 			->resize(800, 600)
-			->save($file->getRealPath(), $file->guessExtension());
+            ->save($file->getRealPath(), $file->guessExtension());
+
+        $imageProcessor = $this->container
+            ->get('image.handling')
+            ->open($thumbnail->getRealPath())
+            ->resize(200, 150)
+            ->save($thumbnail->getRealPath(), $thumbnail->guessExtension());
 	}
 
 	private function resizeVideoThumbnail(LifecycleEventArgs $args)
 	{
-		$video = $arg->getEntity();
+		$video = $args->getEntity();
 
 		if (!$video instanceof Video){
 			return;
@@ -68,12 +75,12 @@ class ImageResizeListener implements EventSubscriber
 			return;
 		}
 
-		$file = new File($video->getWebPath().'/'.$video->getThumbSrc());
+		$file = new File($video->getAbsolutePath());
 
 		$imageProcessor = $this->container
 			->get('image.handling')
 			->open($file->getRealPath())
-			->resize(150, 100)
-			->save($file>getRealPath(), $file->guessExtension());
+			->resize(200, 150)
+			->save($file->getRealPath(), $file->guessExtension());
 	}
 }

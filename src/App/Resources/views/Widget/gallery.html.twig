@@ -1,50 +1,73 @@
-<div class="row">
-	<p class="span8">
-		Catégories
-	</p>
-	<div class="span4 offset">
-		<p class="category">
-			Tous
-		</p>
-		{% for category in galleries %}
-			<p class="category">
-				{{category.title}}
-			</p>
-		{% endfor %}
-	</div>
-	{% for gallery in galleries %}
-		{% set counter = 0 %}
-		{% set index = 0 %}
-		{% for image, video in gallery.imageAsKeysAndVideoAsValues %}
-			{% if counter == 0 %}
-				<div class="row">
-			{% endif %}
+{% macro categoryClass(category, current) %}
+    {% if category == current %}disabled{% endif %}
+{% endmacro %}
 
-			<div class="span2 thumb">
-				<img src="{{ asset(image.src) }}" 
-					alt="{{ image.alt}}" 
-					class="img-thumb"
-					data-category="{{ gallery.title }}"
-					data-type="image"
-					data-index="{{ index }}" />
-			</div>
+{% macro typeClass(type, current) %}
+    {% if type == current %}disabled{% endif %}
+{% endmacro %}
 
-			<div class="span2 thumb">
-				<img src="{{ asset(video.thumbSrc) }}"
-				alt="{{ video.name }}"
-				class="img-thumb"
-				data-category="{{ gallery.title }}"
-				data-type="video"
-				data-index="{{ index + 1 }}" />
-			</div>
+{% import _self as help %}
 
-			{% set counter = counter + 1 %}
-			{% set index = index + 2 %}
+{% if galleries %}
+    <div id="gallery">
 
-			{% if counter == 2 %}
-				</div>
-				{% set counter = 0 %}
-			{% endif %}
-		{% endfor %}
-	{% endfor %1}
-</div>
+    <div class="row">
+        <div class="span6">
+            <strong>Catégories : </strong> <br/>
+            <button
+                class="btn btn-small {{ help.categoryClass('*', selected_category) }}"
+                data-category="*" >
+                Toutes
+            </button>
+            {% for category in galleries %}
+                <button 
+                    class="btn btn-small {{ help.categoryClass(category.title, selected_category) }}"
+                    data-category="{{ category.title }}">
+                 {{ category.title }}
+                </button> 
+            {% endfor %}
+        </div>
+        <div class="span3">
+            <strong>Type de médias : </strong> <br />
+            <button
+                class="btn btn-small {{ help.typeClass('*', selected_type) }}"
+                data-type="*">
+                Tous
+            </button>
+            {% for type in ['video', 'image'] %}
+                <button
+                    class="btn btn-small {{ help.typeClass(type, selected_type) }}"
+                    data-type="{{ type }}">
+                    {{ type }}
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+    <hr/>
+    {% for resource in images_videos %}
+        {% if ( loop.index0 % 3 ) == 0 or loop.index == 1 %}
+            <div class="row">
+        {% endif %}
+       
+        <div class="span3 thumb">
+            <img src="{{ asset(resource.assetThumbPath) }}" 
+                alt="{{ resource.alt }}" 
+                class="img-thumb"
+                data-category="{{ resource.category.title }}"
+                data-type="{{ resource.type }}"
+                data-index="{{ loop.index }}"
+                data-content="{{ resource.content }}"
+                data-src="{{ asset(resource.assetPath) }}"/>
+        </div>
+
+        {% if loop.index % 3 == 0 or loop.last %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    </div>
+{% else %}
+    <div class="alert alert-warning">
+        <p>Aucun médias n'éxiste actuellement</p>
+    </div>
+{% endif %}

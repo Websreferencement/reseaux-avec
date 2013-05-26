@@ -133,7 +133,8 @@ App\Entity\Page:
         headTitle: "Galeries - Réseau AVEC"
         headDescription: "Réseau AVEC - ECO Construction"
         priority: 0.5
-        widgets: ~
+        widgets:
+            - gallery 
         sidebar: navigation
     adherents:
         title: Adhérents
@@ -215,3 +216,8 @@ App\Entity\News:
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         description: |
             Une autre courte description de cette news ...
+App\Entity\MediaCategory:
+    category0:
+        title: 'Nos rénovations'
+    category1:
+        title: 'Nos constructions'

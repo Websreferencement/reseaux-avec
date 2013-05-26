@@ -10,11 +10,12 @@ class PageController extends Controller
 {
 	public function indexAction()
 	{
-		$pages = $this->getRepository('App:Page')
-			->findAll();
+		$datas = $this->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.page_repository'))
+			->setEntity('Page');
 
 		return array(
-			'pages' => $pages
+			'datas' => $datas
 		);
 	}
 

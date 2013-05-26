@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use URLify;
 use App\Model\ListableDatasInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Entity\ImageRepository")
  * @ORM\Table(name="image")
  * @ORM\HasLifecycleCallbacks
  */
-class Image
+class Image implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -26,14 +27,19 @@ class Image
 	 *
 	 * @ORM\Column(type="string", length=250)
 	 */
-	private $name;
+    private $name;
 
-	/**
-	 * @var string $src
-	 *
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $src;
+    /**
+     * @var string $thumbSrc
+     * @ORM\Column(name="thumb_src", type="string")
+     */
+    private $thumbSrc;
+
+    /**
+     * @var string $content
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
 
 	/**
 	 * @var string $alt
@@ -85,7 +91,7 @@ class Image
 	 * @return string
 	 */
 	public function getName()
-	{
+    {
 		return $this->name;
 	}
 	
@@ -125,28 +131,28 @@ class Image
 		return $this;
 	}
 
-	/**
-	 * Get src
-	 * 
-	 * @return string
-	 */
-	public function getSrc()
-	{
-		return $this->src;
-	}
-	
-	/**
-	 * Set src
-	 *
-	 * @param string $src
-	 * @return Image
-	 */
-	public function setSrc($src)
-	{
-		$this->src = $src;
-	
-		return $this;
-	}
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+    
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Image
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    
+        return $this;
+    }
 
 	/**
 	 * Get category
@@ -169,7 +175,12 @@ class Image
 		$this->category = $category;
 	
 		return $this;
-	}
+    }
+
+    public function getType()
+    {
+        return 'image';
+    }
 
 	/**
 	 * Get file
@@ -192,7 +203,30 @@ class Image
 		$this->file = $file;
 	
 		return $this;
-	}
+    }
+
+    /**
+     * Get thumbSrc
+     *
+     * @return string
+     */
+    public function getThumbSrc()
+    {
+        return $this->thumbSrc;
+    }
+    
+    /**
+     * Set thumbSrc
+     *
+     * @param string $thumbSrc
+     * @return Image
+     */
+    public function setThumbSrc($thumbSrc)
+    {
+        $this->thumbSrc = $thumbSrc;
+    
+        return $this;
+    }
 
 	/**
 	 * @ORM\PrePersist()
@@ -204,8 +238,13 @@ class Image
 			return;
 		}
 
-		$this->src = $this->getUploadDir().'/'.
-		URLify::filter($this->getName()).'.'.uniqid().'.'.$this->file->guessExtension();
+		$this->thumbSrc = URLify::filter($this->getName()).
+            '.thumb.'.uniqid().
+            '.'.$this->file->guessExtension();
+
+        $this->content = URLify::filter($this->getName()).
+            '.'.uniqid().
+            '.'.$this->file->guessExtension();
 	}
 
 	/**
@@ -222,7 +261,9 @@ class Image
 			mkdir($this->getWebPath().'/'.$this->getUploadDir());
 		}
 
-		$this->file->move($this->getWebPath(), $this->src);
+        $this->file->move($this->getDestinationDirectory(), $this->content);
+
+        copy($this->getAbsolutePath(), $this->getAbsoluteThumbPath());
 
 		unset($this->file);
 	}
@@ -232,11 +273,12 @@ class Image
 	 */
 	public function postRemove()
 	{
-		if (null === $this->src){
+		if (null === $this->thumbSrc){
 			return;
 		}
 
-		unlink($this->getWebPath().'/'.$this->src);
+        unlink($this->getAbsolutePath());
+        unlink($this->getAbsoluteThumbPath());
 	}
 
 	/**
@@ -247,7 +289,41 @@ class Image
 	public function getWebPath()
 	{
 		return __DIR__.'/../../../web';
-	}
+    }
+
+    /**
+     * Get the absolute path to the uploaded directory
+     *
+     * @return string
+     */
+    public function getDestinationDirectory()
+    {
+        return $this->getWebPath().'/'.$this->getUploadDir();
+    }
+
+    /**
+     * Get the absolute path to the image
+     *
+     * return string
+     */
+    public function getAbsolutePath()
+    {
+        return $this->content ?
+            $this->getDestinationDirectory().'/'.$this->content :
+            null;
+    }
+
+    /**
+     * Get the absolute path to the thumbnail
+     *
+     * @return string
+     */
+    public function getAbsoluteThumbPath()
+    {
+        return $this->thumbSrc ?
+            $this->getDestinationDirectory().'/'.$this->thumbSrc :
+            null;
+    }
 
 	/**
 	 * Get the uppload directory from web/
@@ -257,7 +333,17 @@ class Image
 	public function getUploadDir()
 	{
 		return 'uploaded';
-	}
+    }
+
+    public function getAssetThumbPath()
+    {
+        return $this->getUploadDir().'/'.$this->thumbSrc;
+    }
+
+    public function getAssetPath()
+    {
+        return $this->getUploadDir().'/'.$this->content;
+    }
 
 	public function getListFields()
 	{

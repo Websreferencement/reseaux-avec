@@ -11,11 +11,12 @@ class MediaCategoryController extends Controller
 
 	public function indexAction()
 	{
-		$categories = $this->getRepository('App:MediaCategory')
-			->findAll();
+		$datas = $this->get('app.helper.datatable')
+			->setRepository($this->get('app.entity.media_category_repository'))
+			->setEntity('MediaCategory');
 
 		return array(
-			'categories' => $categories
+			'datas' => $datas
 		);
 	}
 

@@ -13,11 +13,11 @@ class ImagePreviewType extends AbstractType
 	{
 		$parentData = $form->getParent()->getdata();
 
-		if (null === $parentData->getSrc()){
+		if (null === $parentData->getThumbSrc()){
 			return;
 		}
 
-		$view->set('image_src', $parentData->getSrc());
+		$view->set('image_src', $parentData->getThumbSrc());
 	}
 
 	public function getName()

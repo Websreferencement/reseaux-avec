@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\ListableDatasInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Entity\MediaCategoryEntity")
+ * @ORM\Entity(repositoryClass="App\Entity\MediaCategoryRepository")
  * @ORM\Table(name="media_category")
  */
-class MediaCategory
+class MediaCategory implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -216,11 +216,11 @@ class MediaCategory
 		return $this->getTitle();
 	}
 
-	public function getImageAsKeysAndVideoAsValues()
+	public function getImagesAndVideos()
 	{
-		$imagesAndVideos = array_combine(
-			$this->images->toArray(),
-			$this->videos->toArray()
+		$imagesAndVideos = array_merge(
+			$this->getImages()->toArray(),
+			$this->getVideos()->toArray()
 		);
 
 		return $imagesAndVideos;

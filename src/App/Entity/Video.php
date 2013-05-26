@@ -12,7 +12,7 @@ use URLify;
  * @ORM\Table(name="video")
  * @ORM\HasLifecycleCallbacks
  */
-class Video
+class Video implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -22,18 +22,24 @@ class Video
 	private $id;
 
 	/**
-	 * @var string $embed
+	 * @var string $content
 	 *
 	 * @ORM\Column(type="text")
 	 */
-	private $embed;
+	private $content;
 
 	/**
 	 * @var string $name
 	 *
 	 * @ORM\Column(type="string", length=150)
 	 */
-	private $name;
+    private $name;
+
+    /**
+     * @var string $alt
+     * @ORM\Column(name="alt", type="string")
+     */
+    private $alt;
 
 	/**
 	 * @var string $thumbSrc
@@ -47,7 +53,13 @@ class Video
 	 * 
 	 * @Assert\File()
 	 */
-	private $file;
+    private $file;
+
+    /**
+     * @var string $category
+     * @ORM\ManyToOne(targetEntity="MediaCategory", inversedBy="videos")
+     */
+    private $category;
 
 	/**
 	 * Get id
@@ -70,30 +82,58 @@ class Video
 		$this->id = $id;
 	
 		return $this;
-	}
+    }
 
-	/**
-	 * Get embed
-	 * 
-	 * @return string
-	 */
-	public function getEmbed()
-	{
-		return $this->embed;
-	}
-	
-	/**
-	 * Set embed
-	 *
-	 * @param string $embed
-	 * @return Video
-	 */
-	public function setEmbed($embed)
-	{
-		$this->embed = $embed;
-	
-		return $this;
-	}
+    public function getType()
+    {
+        return 'video';
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+    
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Video
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    
+        return $this;
+    }
+
+    /**
+     * Get alt
+     *
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+    
+    /**
+     * Set alt
+     *
+     * @param string $alt
+     * @return Video
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
+    
+        return $this;
+    }
 
 	/**
 	 * Get name
@@ -139,7 +179,30 @@ class Video
 		$this->thumbSrc = $thumbSrc;
 	
 		return $this;
-	}
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    /**
+     * Set category
+     *
+     * @param MediaCategory $category
+     * @return Video
+     */
+    public function setCategory(MediaCategory $category)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
 
 	/**
 	 * Get file
@@ -174,9 +237,9 @@ class Video
 			return;
 		}
 
-		$this->thumbSrc = $this->getUploadDir().'/'.
-			URLify::filter($this->getName()).'.'.uniqid().'.'.
-			$this->file->guessExtension();
+		$this->thumbSrc = URLify::filter($this->getName()).
+            '.'.uniqid().
+            '.'.$this->file->guessExtension();
 	}
 
 	/**
@@ -193,7 +256,7 @@ class Video
 			mkdir($this->getWebPath().'/'.$this->getUploadDir());
 		}
 
-		$this->file->move($this->getWebPath(), $this->thumbSrc);
+		$this->file->move($this->getDestinationDirectory(), $this->thumbSrc);
 
 		unset($this->file);
 	}
@@ -203,11 +266,11 @@ class Video
 	 */
 	public function postRemove()
 	{
-		if (null === $this->src){
+		if (null === $this->thumbSrc){
 			return;
 		}
 
-		unlink($this->getWebPath().'/'.$this->thumbSrc);
+		unlink($this->getAbsolutePath());
 	}
 
 	public function getUploadDir()
@@ -217,8 +280,35 @@ class Video
 
 	public function getWebPath()
 	{
-		return __DIR__.'/../../../web/';
-	}
+		return __DIR__.'/../../../web';
+    }
+
+    public function getDestinationDirectory()
+    {
+        return $this->getWebPath().'/'.$this->getUploadDir();
+    }
+
+    public function getAbsolutePath()
+    {
+        return $this->thumbSrc ?
+            $this->getDestinationDirectory().'/'.$this->thumbSrc :
+            null;
+    }
+
+    public function getAssetPath()
+    {
+        return '';
+    }
+
+    public function getAssetThumbPath()
+    {
+        return $this->getUploadDir().'/'.$this->thumbSrc;
+    }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
 	public function getListFields()
 	{

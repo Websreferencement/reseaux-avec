@@ -12,6 +12,7 @@ parameters:
     app.form_type.media_category.class: "App\\Form\\MediaCategoryType"
     app.form_type.image_preview.class: "App\\Form\\ImagePreviewType"
     app.image_resize_listener.class: "App\\EventListener\\ImageResizeListener"
+    app.helper.datatable.class: "App\\Helper\\Datatable"
 
 services:
     app.widget_container:
@@ -78,3 +79,7 @@ services:
             - @service_container
         tags:
             - {name: doctrine.event_subscriber, connection: default}
+    app.helper.datatable:
+        class: %app.helper.datatable.class%
+        arguments:
+            - @service_container

@@ -6,6 +6,7 @@ use Twig_Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use App\Model\ListableDatasInterface;
 use App\Exception\ListableEntityViolation;
+use App\Helper\Datatable;
 
 class BootstrapHelperExtension extends Twig_Extension
 {
@@ -40,47 +41,23 @@ class BootstrapHelperExtension extends Twig_Extension
 	/**
 	 * Display bootstrap datatable
 	 * 
-	 * @param array $datas
+	 * @param Datatable $datatable
 	 * @param string $title
 	 * @return string
 	 */
-	public function datatables(array $datas, $title)
+	public function renderDatatable(Datatable $datatable, $title = null)
 	{
-		$this->checkImplementationOfListable($datas);
-
-		if(count($datas)){
-			$className = get_class($datas[0]);
-			$lastClassInPSR = explode('\\', $className);
-			$lastClassInPSR = array_pop($lastClassInPSR);
-
-			$routeName = strtolower($lastClassInPSR);
-
-			$routes = array(
-				'create' => 'app_'.$routeName.'_new',
-				'edit' => 'app_'.$routeName.'_edit',
-				'delete' => 'app_'.$routeName.'_delete'
-			);
-
-			$heads = array_keys($datas[0]->getListFields());
-		} else {
-			$routes = null;
-			$heads = null;
+		if ($title !== null){
+			$datatable->setTitle($title);
 		}
 
-		return $this->container
-			->get('templating')
-			->render('App::Bootstrap/datatable.html.twig', array(
-				'title' => $title,
-				'datas' => $datas,
-				'routes' => $routes,
-				'heads' => $heads
-			));
+		return $datatable->render();
 	}
 
 	public function getFunctions()
 	{
 		return array(
-			'bootstrap_datatable' => new \Twig_Function_Method($this, 'datatables', array(
+			'render_datatable' => new \Twig_Function_Method($this, 'renderDatatable', array(
 				'is_safe' => array('html')
 			))
 		);

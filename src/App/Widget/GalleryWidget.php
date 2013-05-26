@@ -19,12 +19,32 @@ class GalleryWidget extends AbstractWidget
 
 	public function initialize()
 	{
-		$galleries = $this->container
-			->get('app.entity.media_category_repository')
-			->findAllAndPopulate();
+        $galleries = $this->container
+            ->get('app.entity.media_category_repository')
+            ->findAll();
 
-		$this->args->set('galleries', $galleries);
+        $request = $this->container->get('request');
 
-		return;
+        if ($request->query->get('c')) {
+            $this->args->set('selected_category',
+                $request->query->get('c'));
+        } else {
+            $this->args->set('selected_category', '*');
+        }
+
+        if ($request->query->get('t')) {
+            $this->args->set('selected_type', 
+                $request->query->get('t'));
+        } else {
+            $this->args->set('selected_type', '*');
+        }
+
+        $this->args->set('galleries', $galleries);
+
+        $imagesAndVideos = $this->container
+            ->get('app.entity.media_category_repository')
+            ->getImagesAndVideos();
+
+        $this->args->set('images_videos', $imagesAndVideos);
 	}
 }
