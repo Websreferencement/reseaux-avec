@@ -1,4 +1,5 @@
-<form method="POST" action="{{path('app_contact_new')}}">
+<form method="POST" action="{{ path('app_contact_create') }}">
+    <input type="hidden" name="_method" value="POST" />
 	{{ form_errors(contact_form) }}
 
 	{{ form_row(contact_form.name) }}
@@ -8,6 +9,8 @@
 	{{ form_row(contact_form.phone) }}
 
 	{{ form_row(contact_form.message) }}
+    
+    {{ form_rest(contact_form) }}
 
 	<button class="btn btn-contact" id="send">Enyoyer !</contact>
 </form>

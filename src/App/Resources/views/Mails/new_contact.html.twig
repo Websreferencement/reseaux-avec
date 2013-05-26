@@ -1,0 +1,21 @@
+{% block subject 'Nouveau contact !' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="fr">
+    <body>
+        <h1>Vous venez de recevoir un nouveau contact !</h1>
+        <p>
+            Nouveau contact de <strong>{{ contact.name }}</strong>. <br />
+            <strong>Email : </strong>{{ contact.email }} <br />
+            {% if contact.phone %}
+            <strong>Téléphone : </strong>{{ contact.phone }} <br />
+            {% endif %}
+        </p>
+        <h2>{{ contact.name }} a laissé un message :</h2>
+        <p>
+            {{ contact.message }}
+        </p>
+    </body>
+</html>
+{% endblock %}

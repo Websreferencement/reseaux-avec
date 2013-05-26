@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Knp\RadBundle\Controller\Controller;
 use App\Entity\Contact;
+use Symfony\Component\HttpFoundation\Request;
 
 class ContactController extends Controller
 {
@@ -30,7 +31,32 @@ class ContactController extends Controller
 			$this->persist($contact);
 			$this->flush();
 
-			$this->addFlash('info', 'Le contact '.$contact.' créé avec succés !');
+            if ($this->getFlashBag()->get('contact_widget')) {
+                // send email message
+                $from = $this->container
+                    ->getParameter('mailer_from');
+
+                $message = $this->createMessage(
+                    'new_contact', 
+                    array(
+                        'contact' => $contact
+                    ))
+                    ->setFrom($from)
+                    ->setTo($contact->getEmail());
+
+                $this->send($message);
+
+			    $this->addFlash(
+                    'info', 
+                    'Votre message à bien était envoyé'
+                ); 
+                return $this->redirectToRoute('frontend', array(
+                    'uri' => 'contact'
+                ));
+            }
+
+			$this->addFlash('info', 'Le contact '.$contact.' créé avec succés !'); 
+
 
 			return $this->redirectToRoute('app_contact_index');
 		}

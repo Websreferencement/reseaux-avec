@@ -1,0 +1,14 @@
+{% block subject 'Nouveau contact !' %}
+
+{% block body %}
+Vous de recevoir un nouveau contact !
+=====================================
+
+De : {{ contact.name }}
+Email : {{ contact.email }}
+{% if contact.phone %}Téléphone : {{ contact.phone }}{% endif %}
+-------------------------------------
+
+{{ contact.message }}
+
+{% endblock %}

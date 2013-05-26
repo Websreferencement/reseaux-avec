@@ -11,8 +11,20 @@
 {% if galleries %}
     <div id="gallery">
 
-    <div class="row">
-        <div class="span6">
+    <form class="row"
+          method="GET"
+          action="{{ path('frontend', {'uri': 'galeries'}) }}">
+        <input 
+            type="hidden" 
+            id="category_input" 
+            name="c" 
+            value="{{ selected_category }}" />
+        <input 
+            type="hidden" 
+            id="type_input" 
+            name="t" 
+            value="{{ selected_type }}" />
+        <div class="span6 categories">
             <strong>Catégories : </strong> <br/>
             <button
                 class="btn btn-small {{ help.categoryClass('*', selected_category) }}"
@@ -27,7 +39,7 @@
                 </button> 
             {% endfor %}
         </div>
-        <div class="span3">
+        <div class="span3 types">
             <strong>Type de médias : </strong> <br />
             <button
                 class="btn btn-small {{ help.typeClass('*', selected_type) }}"
@@ -42,7 +54,7 @@
                 </button>
             {% endfor %}
         </div>
-    </div>
+    </form>
     <hr/>
     {% for resource in images_videos %}
         {% if ( loop.index0 % 3 ) == 0 or loop.index == 1 %}

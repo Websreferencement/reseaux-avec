@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Model\ListableDatasInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="contact")
  */
-class Contact
+class Contact implements ListableDatasInterface
 {
 	/**
 	 * @ORM\Id
@@ -135,7 +136,17 @@ class Contact
 		$this->message = $message;
 	
 		return $this;
-	}
+    }
+
+    public function getListFields()
+    {
+        return array(
+            'Nom' => $this->getName(),
+            'Email' => $this->getEmail(),
+            'Téléphone' => $this->getPhone() ?: 'Non renseigné',
+            'message' => $this->getMessage()
+        );
+    }
 
 	public function __toString()
 	{

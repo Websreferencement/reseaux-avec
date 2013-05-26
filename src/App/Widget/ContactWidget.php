@@ -24,7 +24,12 @@ class ContactWidget extends AbstractWidget
 
 		$form = $this->container
 			->get('knp_rad.form.manager')
-			->createBoundObjectForm($contact, 'new');
+            ->createBoundObjectForm($contact, 'new');
+
+        $this->container
+            ->get('session')
+            ->getFlashBag()
+            ->set('contact_widget', true);
 
 		$this->args->set('contact_form', $form->createView());
 
