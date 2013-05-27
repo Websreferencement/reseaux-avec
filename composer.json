@@ -38,7 +38,8 @@
         "coresphere/console-bundle": "*",
         "Trsteel/ckeditor-bundle": "dev-master",
         "jbroadway/urlify": "dev-master",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "behat/behat": "2.4.*",

@@ -1,6 +1,6 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -12,6 +12,8 @@ security:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        fos_user:
+            id: fos_user.user_provider.username
 
     firewalls:
         dev:
@@ -22,7 +24,10 @@ security:
         app:
             pattern: ^/
             anonymous: true
+            form_login:
+                provider: fos_user
+                csrf_provider: form.csrf_provider
+            logout: true
 
     access_control:
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
+        - { path: ^/admin, role: ROLE_ADMIN }

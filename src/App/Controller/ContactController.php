@@ -30,7 +30,6 @@ class ContactController extends Controller
 		if($form->isBound() and $form->isValid()){
 			$this->persist($contact);
 			$this->flush();
-
             if ($this->getFlashBag()->get('contact_widget')) {
                 // send email message
                 $from = $this->container

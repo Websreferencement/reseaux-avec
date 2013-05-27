@@ -79,3 +79,8 @@ trsteel_ckeditor:
 knp_paginator:
     template:
         pagination:           KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: app 
+    user_class: UserBundle\Entity\User

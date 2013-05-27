@@ -23,6 +23,8 @@ class AppKernel extends Kernel
             new DavidJegat\AsseticMinifierBundle\DavidJegatAsseticMinifierBundle(),
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
             new App\App(),
         );
 
