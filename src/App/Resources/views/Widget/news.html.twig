@@ -14,7 +14,8 @@
 
 	{% for actu in news %}
 	    <div class="page_header">
-	    	<h3>{{actu.title}} <small> - actualité du {{actu.createdAt}}</small></h3>
+	    	<h3>{{actu.title}} <br />
+            <small>actualité du {{actu.createdAt}}</small></h3>
 	    </div>
 	    <p>{{actu.description}}</p>
 	    <a class="btn" href="{{path('app_news_show', {'uri': actu.uri})}}">Lire la suite</a>

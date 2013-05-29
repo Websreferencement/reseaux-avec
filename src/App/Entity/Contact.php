@@ -45,6 +45,29 @@ class Contact implements ListableDatasInterface
 	 * @ORM\Column(type="text")
 	 */
 	private $message;
+    
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Contact
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    
+        return $this;
+    }
 
 	/**
 	 * Get name

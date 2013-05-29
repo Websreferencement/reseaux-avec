@@ -53,13 +53,13 @@ class ImageResizeListener implements EventSubscriber
 		$imageProcessor = $this->container
 			->get('image.handling')
 			->open($file->getRealPath())
-			->resize(800, 600)
+			->cropResize(800, 600)
             ->save($file->getRealPath(), $file->guessExtension());
 
         $imageProcessor = $this->container
             ->get('image.handling')
             ->open($thumbnail->getRealPath())
-            ->resize(200, 150)
+            ->cropResize(200, 150)
             ->save($thumbnail->getRealPath(), $thumbnail->guessExtension());
 	}
 

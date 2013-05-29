@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Knp\RadBundle\Controller\Controller;
 use App\Entity\News;
+use Symfony\Component\HttpFoundation\Request;
 
 class NewsController extends Controller
 {

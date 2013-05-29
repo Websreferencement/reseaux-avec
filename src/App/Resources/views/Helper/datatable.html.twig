@@ -6,6 +6,9 @@
 </p>
 
 {% if heads %}
+
+    {{knp_pagination_render(datas)}}
+
 	<table class="table table-hover table-bordered">
 
 		<thead>
@@ -35,6 +38,7 @@
 			{% endfor %}
 		</tbody>
 	</table>
+    {{knp_pagination_render(datas)}}
 {% else %}
 	<div class="alert alert-info">
 		<h1>Aucune données pour le moment :(</h1>

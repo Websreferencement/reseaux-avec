@@ -34,13 +34,20 @@ class Datatable
 			throw new \RuntimeException('No entity has been defined for the Datatable helper');
 		}
 
-		if ($this->repository instanceof DatatableRepositoryInterface) {
-			$datas = $this->repository->getDatas();
-		} else {
-			$datas = $this->repository
-				->findAll();
-		}
+        $request = $this->container->get('request');
 
+        $query = $this->repository
+            ->createQueryBuilder('a')
+            ->getQuery();
+        
+        $datas = $this->container
+            ->get('knp_paginator')
+            ->paginate(
+                $query,
+                $request->query->get('page', 1),
+                10
+            );
+        
 		$heads = false;
 		if (!empty($datas)){
 			$heads = array();

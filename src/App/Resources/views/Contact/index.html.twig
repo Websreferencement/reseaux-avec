@@ -1,6 +1,9 @@
-{% extends '::base.html.twig' %}
+{% extends 'App::Admin/index.html.twig' %}
 
-{% block body %}
-{{ bootstrap_datatable( datas ) }}
+{% block navigation %}
+	<a href="{{path('app_admin_index')}}" class="btn">Revenir au panneau principal</a>
+{% endblock %}
 
-{% endblock body %}
+{% block content %}
+	{{render_datatable(datas, 'Vos contactes')}}
+{% endblock content %}

@@ -1,8 +1,31 @@
-<ul>
+<ul class="visible-desktop">
 
     <li><a href="{{path('app_page_index')}}" class="menu-item">Vos pages</a></li>
 
-    <li><a href="{{path('app_news_index')}}" class="menu-item">Vos actualités</a></li>
+    <li><a href="{{path('app_news_index')}}" class="menu-item">Vos actus</a></li>
 
-    {# <li><a href="{{path('frontend', {'page': ''})}}" class="menu-item">Déconéxion</a></li> #}
+    <li><a href="{{path('app_mediaCategory_index')}}" class="menu-item">Vos catégories</a></li>
+    
+    <li><a href="{{path('app_image_index')}}" class="menu-item">Vos images</a></li>
+
+    <li><a href="{{path('app_video_index')}}" class="menu-item">Vos vidéos</a></li>
+
+    <li><a href="{{path('app_contact_index')}}" class="menu-item">Vos contactes</a></li>
+
+    <li><a href="{{path('frontend', {'uri': ''})}}" class="menu-item">Site</a></li>
 </ul>
+
+<select class="hidden-desktop" id="responsive-menu">
+
+    {% for path, name in {
+        'app_page_index'          : 'Vos pages',
+        'app_news_index'          : 'Vos actus',
+        'app_mediaCategory_index' : 'Vode catégories',
+        'app_image_index'         : 'Vos images',
+        'app_video_index'         : 'Vos vidéos',
+        'app_contact_index'       : 'Vos contactes'
+    } %}
+        <option value="{{ url(path) }}">{{ name }}</option>
+    {% endfor %}
+        <option value="{{ url('frontend', {'uri': ''}) }}">Site</option>
+</select>

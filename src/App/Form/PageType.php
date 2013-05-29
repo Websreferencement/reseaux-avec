@@ -20,7 +20,9 @@ class PageType extends AbstractType
 	 * @param array $options
 	 */
 	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
+    {
+        $secu = $this->container->get('security.context');
+
 		$builder
 			->add('title', 'text', array(
 				'attr' => array(
