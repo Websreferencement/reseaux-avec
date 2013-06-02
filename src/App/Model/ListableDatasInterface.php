@@ -11,4 +11,6 @@ interface ListableDatasInterface
     public function getEditRole();
 
     public function getDeleteRole();
+
+    public function getCreateRole();
 }

@@ -64,6 +64,7 @@ class Datatable
             $permissions['show'] = $context->isGranted($datas[0]->getShowRole());
             $permissions['edit'] = $context->isGranted($datas[0]->getEditRole());
             $permissions['delete'] = $context->isGranted($datas[0]->getDeleteRole());
+            $permissions['create'] = $context->isGranted($datas[0]->getCreateRole());
         }
 
 		return $this->container

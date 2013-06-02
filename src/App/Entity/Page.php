@@ -346,6 +346,11 @@ class Page implements ListableDatasInterface
     {
         return 'ROLE_SUPER_ADMIN';
     }
+
+    public function getCreateRole()
+    {
+        return 'ROLE_SUPER_ADMIN';
+    }
     
 	/**
 	 * Representation of a Page

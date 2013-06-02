@@ -173,7 +173,12 @@ class Contact implements ListableDatasInterface
 
     public function getDeleteRole()
     {
-        return 'ROLE_ADMIN';
+        return 'ROLE_SUPER_ADMIN';
+    }
+
+    public function getCreateRole()
+    {
+        return 'ROLE_SUPER_ADMIN';
     }
     
     public function getListFields()

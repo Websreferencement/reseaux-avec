@@ -331,4 +331,9 @@ class Video implements ListableDatasInterface
     {
         return 'ROLE_ADMIN';
     }
+
+    public function getCreateRole()
+    {
+        return 'ROLE_ADMIN';
+    }
 }
