@@ -331,6 +331,22 @@ class Page implements ListableDatasInterface
 		return $this;
 	}
 
+    public function getShowRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getEditRole()
+
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getDeleteRole()
+    {
+        return 'ROLE_SUPER_ADMIN';
+    }
+    
 	/**
 	 * Representation of a Page
 	 * 

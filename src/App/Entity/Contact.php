@@ -161,6 +161,21 @@ class Contact implements ListableDatasInterface
 		return $this;
     }
 
+    public function getShowRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getEditRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getDeleteRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+    
     public function getListFields()
     {
         return array(

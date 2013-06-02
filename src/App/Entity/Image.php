@@ -345,6 +345,21 @@ class Image implements ListableDatasInterface
         return $this->getUploadDir().'/'.$this->content;
     }
 
+    public function getShowRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getEditRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getDeleteRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
 	public function getListFields()
 	{
 		return array(

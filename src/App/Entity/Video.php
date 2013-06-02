@@ -316,4 +316,19 @@ class Video implements ListableDatasInterface
 			'nom de la vidéo' => $this->getName()
 		);
 	}
+
+    public function getShowRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getEditRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getDeleteRole()
+    {
+        return 'ROLE_ADMIN';
+    }
 }

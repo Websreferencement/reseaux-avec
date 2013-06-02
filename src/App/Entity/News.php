@@ -212,6 +212,21 @@ class News implements ListableDatasInterface
 		);
 	}
 
+    public function getShowRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getEditRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
+    public function getDeleteRole()
+    {
+        return 'ROLE_ADMIN';
+    }
+
 	/**
 	 * String representation
 	 * 

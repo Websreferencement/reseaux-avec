@@ -23,6 +23,8 @@ class PageType extends AbstractType
     {
         $secu = $this->container->get('security.context');
 
+        $context = $this->container->get('security.context');
+
 		$builder
 			->add('title', 'text', array(
 				'attr' => array(
@@ -33,22 +35,28 @@ class PageType extends AbstractType
 			->add('content', 'ckeditor', array(
 				'label' => 'Contenue de cette page'
 			))
-			->add('widgets', 'widget')
-			->add('sidebar', 'sidebar')
-			->add('headTitle', 'text', array(
-				'attr' => array(
-					'class' => 'input-large'
-				),
-				'label' => 'Titre du head'
-			))
-			->add('headDescription', 'textarea', array(
-				'label' => 'Meta description',
-				'required' => false
-			))
-			->add('priority', 'integer', array(
-				'label' => 'Sitemap priorité'
-			))
-		;
+        ;
+
+        if ($context->isGranted('ROLE_SUPER_ADMIN')) {
+            $builder 
+                ->add('widgets', 'widget')
+                ->add('sidebar', 'sidebar')
+                ->add('headTitle', 'text', array(
+                    'attr' => array(
+                        'class' => 'input-large'
+                    ),
+                    'label' => 'Titre du head'
+                ))
+                ->add('headDescription', 'textarea', array(
+                    'label' => 'Meta description',
+                    'required' => false
+                ))
+                ->add('priority', 'integer', array(
+                    'label' => 'Sitemap priorité'
+                ))
+            ;
+
+        }
 	}
 
 	/**
