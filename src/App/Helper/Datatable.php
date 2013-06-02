@@ -36,6 +36,9 @@ class Datatable
 
         $request = $this->container->get('request');
 
+        $context = $this->container
+            ->get('security.context');
+
         $query = $this->repository
             ->createQueryBuilder('a')
             ->getQuery();
@@ -56,6 +59,13 @@ class Datatable
 			}
 		}
 
+        $permissions = array();
+        if (!empty($datas)) {
+            $permissions['show'] = $context->isGranted($datas[0]->getShowRole());
+            $permissions['edit'] = $context->isGranted($datas[0]->getEditRole());
+            $permissions['delete'] = $context->isGranted($datas[0]->getDeleteRole());
+        }
+
 		return $this->container
 			->get('templating')
 			->render('App::Helper/datatable.html.twig', array(
@@ -66,6 +76,7 @@ class Datatable
 					'delete' => 'app_'.lcfirst($this->entity).'_delete'
 				),
 				'title' => $this->title,
+                'permissions' => $permissions,
 				'heads' => $heads
 			));
 	}

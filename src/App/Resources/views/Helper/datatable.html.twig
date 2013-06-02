@@ -27,12 +27,17 @@
 						<td>{{value}}</td>
 					{% endfor %}
 						<td>
-							<a href="{{ path(routes.edit, {'id' : data.id}) }}" class="btn btn-mini">éditer</a>
-							<form method="POST" action="{{ path(routes.delete, {'id' : data.id}) }}" 
-								onsubmit="return confirm('Êtes vous sur ?')">
-								<input type="hidden" name="_method" value="DELETE" />
-								<input type="submit" class="btn btn-mini btn-danger" value="supprimer" />
-							</form>
+                            {% if permissions.edit %}
+							    <a href="{{ path(routes.edit, {'id' : data.id}) }}" class="btn btn-mini">éditer</a>
+                            {% endif %}
+
+                            {% if permissions.delete %}
+                                <form method="POST" action="{{ path(routes.delete, {'id' : data.id}) }}" 
+                                    onsubmit="return confirm('Êtes vous sur ?')">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input type="submit" class="btn btn-mini btn-danger" value="supprimer" />
+                                </form>
+                            {% endif %}
 						</td>
 				</tr>
 			{% endfor %}
