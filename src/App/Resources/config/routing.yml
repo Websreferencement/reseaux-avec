@@ -10,6 +10,10 @@ App:News:
     prefix: /admin/news
     resources: [edit, update, delete]
 
+App:Action:
+    prefix: /admin/action
+    resources: [edit, update, delete]
+
 App:MediaCategory:
     prefix: /admin/category
     resources: [edit, update, delete]
@@ -30,6 +34,13 @@ app_news_show:
     pattern: "/actualites/{uri}"
     defaults:
         _controller: App:News:show
+    requirements:
+        uri: (.*)
+
+app_action_show:
+    pattern: "/action/{uri}"
+    defaults:
+        _controller: App:Action:show
     requirements:
         uri: (.*)
 

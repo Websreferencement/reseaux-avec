@@ -52,7 +52,7 @@ class Datatable
             );
         
 		$heads = false;
-		if (!empty($datas)){
+		if ($datas->count()){
 			$heads = array();
 			foreach($datas[0]->getListFields() as $k => $v){
 				$heads[] = $k;
@@ -60,7 +60,7 @@ class Datatable
 		}
 
         $permissions = array();
-        if (!empty($datas)) {
+        if ($datas->count()) {
             $permissions['show'] = $context->isGranted($datas[0]->getShowRole());
             $permissions['edit'] = $context->isGranted($datas[0]->getEditRole());
             $permissions['delete'] = $context->isGranted($datas[0]->getDeleteRole());

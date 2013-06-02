@@ -3,6 +3,7 @@ parameters:
     app.widget_container.class: "App\Manager\WidgetContainer"
     app.form_type.page.class: "App\\Form\\PageType"
     app.form_type.news.class: "App\\Form\\NewsType"
+    app.form_type.action.class: "App\\Form\\ActionType"
     app.form_type.widget.class: "App\\Form\\WidgetType"
     app.twig.bootstrap_helper_extension.class: "App\\Twig\\BootstrapHelperExtension"
     app.twig.slider_extension.class: "App\\Twig\\SliderExtension"
@@ -33,6 +34,12 @@ services:
             - ['setContainer', [@service_container]]
         tags:
             - {name: form.type, alias: news}
+    app.form.action_type:
+        class: %app.form_type.action.class%
+        calls:
+            - [ 'setContainer', [ @service_container ] ]
+        tags:
+            - {name: form.type, alias: action}
     app.form.widget_type:
         class: %app.form_type.widget.class%
         calls:

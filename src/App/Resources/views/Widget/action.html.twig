@@ -1,0 +1,29 @@
+{% if not actions %}
+
+<p class="well well-large">
+	Aucune action n'a encore était faite.
+</p>
+
+{% else %}
+
+	{% block actions_pagination %}
+		<div class="pagination">
+			{{knp_pagination_render(actions)}}
+		</div>
+	{% endblock %}
+
+	{% for action in actions %}
+	    <div class="page_header">
+	    	<h3>{{action.title}} <br />
+            <small>action du {{action.createdAt}}</small></h3>
+	    </div>
+	    <p>{{action.description}}</p>
+	    <a class="btn" href="{{path('app_action_show', {'uri': action.uri})}}">Lire la suite</a>
+	    {% if not loop.last %}
+	    	<hr/>
+	    {% endif %}
+	{% endfor %}
+
+	{{block('actions_pagination')}}
+
+{% endif %}

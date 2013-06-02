@@ -1,7 +1,7 @@
 <h2>{{title}}</h2>
 <hr/>
 
-{% if permissions and permissions.create %}
+{% if permissions is empty or permissions.create %}
 <p>
 	<a href="{{ path(routes.create) }}" class="btn btn-primary">Rajouter</a>
 </p>

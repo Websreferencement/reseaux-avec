@@ -1,0 +1,9 @@
+{% extends 'App::Admin/index.html.twig' %}
+
+{% block navigation %}
+	<a href="{{path('app_admin_index')}}" class="btn">Revenir au panneau principal</a>
+{% endblock %}
+
+{% block content %}
+	{{render_datatable(datas, 'Vos actions')}}
+{% endblock content %}
