@@ -82,3 +82,44 @@
     </li> 
 
 </ul>
+
+<ul class="thumbnails">
+    
+    <li class="span5 thumbnail">
+        <form method="POST" 
+              action="{{ path('app_upload_member') }}"
+              class="caption"
+              enctype="multipart/form-data">
+            <h3>Uploader la liste des membres</h3>
+
+            <label for="member_list">
+                Choisisez un fichier .pdf qui contient la liste
+                des adhérents.
+            </label>
+
+            <input type="file" name="member_list" id="member_list" />
+
+            <input type="submit" class="btn" value="envoyer" />
+
+        </form>
+    </li>
+
+    <li class="span5 thumbnail">
+        <form method="POST" 
+              action="{{ path('app_upload_agenda') }}"
+              class="caption"
+              enctype="multipart/form-data">
+            <h3>Uploader l'agenda</h3>
+
+            <label for="member_list">
+                Choisisez un fichier .pdf qui contient l'agenda 
+            </label>
+
+            <input type="file" name="agenda" id="agenda" />
+
+            <input type="submit" class="btn" value="envoyer" />
+
+        </form>
+    </li>
+
+</ul>

@@ -41,6 +41,18 @@ app_upload_ckeditor_image:
         _controller: App:Admin:uploadImage
     methods: POST
 
+app_upload_member:
+    pattern: '/upload_member_list'
+    defaults:
+        _controller: App:Admin:uploadMemberList
+    methods: POST
+
+app_upload_agenda:
+    pattern: '/upload_agenda'
+    defaults:
+        _controller: App:Admin:uploadAgenda
+    methods: POST
+
 # homepage:
 #     pattern: /
 #     defaults: { _controller: FrameworkBundle:Template:template, template: 'App::homepage.html.twig' }

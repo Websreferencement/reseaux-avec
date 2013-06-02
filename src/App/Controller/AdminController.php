@@ -18,14 +18,14 @@ class AdminController extends Controller
         $callback = $request->query->get('CKEditorFuncNum');
 
         // create the upload directory :
-        if(!is_dir(__DIR__.'/../../../web/uploaded')){
-            mkdir(__DIR__.'/../../../web/uploaded');
+        if(!is_dir(__DIR__.'//../../../web/uploaded')){
+            mkdir(__DIR__.'//../../../web/uploaded');
         }
 
         $finder = new Finder();
         $files  = $finder->files()
             ->name('/\.(jpg|jpeg|png|bmp|gif)/i')
-            ->in(__DIR__.'/../../../web/uploaded');
+            ->in(__DIR__.'//../../../web/uploaded');
 
         return array(
             'files' => $files,
@@ -50,16 +50,16 @@ class AdminController extends Controller
                 $message = 'form.ckeditor.bad_extension';
             } else {
                 $file_name = uniqid().'.'.$ext;
-                $file->move(__DIR__.'/../../../web/uploaded/', $file_name);
+                $file->move(__DIR__.'//../../../web/uploaded/', $file_name);
                 // Upload file :
                 $image = $this->get('image.handling')
-                    ->open(__DIR__.'/../../../web/uploaded/'.$file_name);
+                    ->open(__DIR__.'//../../../web/uploaded/'.$file_name);
                 if($ext == 'png'){
                     $image = $image->cropResize(900, 600, 'transparent');
                 } else {
                     $image = $image->cropResize(900, 600);
                 }
-                $image->save(__DIR__.'/../../../web/uploaded/'.$file_name);
+                $image->save(__DIR__.'//../../../web/uploaded/'.$file_name);
                 $message = '';
             }
         }
@@ -70,4 +70,90 @@ class AdminController extends Controller
             'file_name' => $file_name
         );
 	}
+
+    /**
+     * Upload the member list in pdf
+     */
+    public function uploadMemberListAction()
+    {
+        $request = $this->getRequest();
+        $context = $this->get('security.context');
+
+        if (!$request->getMethod() == 'POST') {
+            $this->addFlash('error', 'Invalid method !');
+            return $this->redirectToRoute('app_admin_index');
+        }
+
+        if (!$context->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('error', 'Vous n\'avez pas la permission !');
+            return $this->redirectToRoute('app_admin_index');
+        }
+        
+
+        $pdf = $request->files->get('member_list');
+        if (null === $pdf) {
+            $this->addFlash('error', 'Aucun fichier n\'a était envoyé !');
+            return $this->redirectToRoute('app_admin_index');
+        }
+
+        if (!is_dir(__DIR__.'/../../../web/pdf-upload')) {
+            mkdir(__DIR__.'/../../../web/pdf-upload');
+        }
+
+        if ($pdf->getMimeType() != 'application/pdf') {
+            $this->addFlash('error', 'Le format de fichier est invalide !
+                un fichier au fomat ".pdf" doit être envoyé');
+            return $this->redirectToRoute('app_admin_index');
+        }
+
+        if (file_exists(__DIR__.'/../../../web/pdf-upload/member_list.pdf')) {
+            unlink(__DIR__.'/../../../web/pdf-upload/member_list.pdf');
+        }
+
+        $pdf->move(__DIR__.'/../../../web/pdf-upload', 'member_list.pdf');
+
+        $this->addFlash('success', 'La liste des membres à était mise à jour
+            avec succés');
+        return $this->redirectToRoute('app_admin_index');
+    }
+
+    /**
+     * Upload the agenda
+     */
+   public function uploadAgendaAction()
+   {
+       $request = $this->getRequest();
+       $response = array();
+       $context = $this->get('security.context');
+
+       if (!$context->isGranted('ROLE_ADMIN')) {
+           $this->addFlash('error', 'Vous n\'avez pas la permission.');
+           return $this->redirectToRoute('app_admin_index');
+       }
+
+       $pdf = $request->files->get('agenda');
+       if (null === $pdf) {
+           $this->addFlash('error', 'Aucun fichier n\'a était reçu.');
+           return $this->redirectToRoute('app_admin_index');
+       }
+
+       if (!is_dir(__DIR__.'/../../../web/pdf-upload')) {
+           mkdir(__DIR__.'/../../../web/pdf-upload');
+       }
+
+       if ($pdf->getMimeType() != 'application/pdf') {
+           $this->addFlash('error', 'Mauvais format ! Un fichier au format
+               ".pdf" dot être envoyé');
+           return $this->redirectToRoute('app_admin_index');
+       }
+
+       if (file_exists(__DIR__.'/../../../web/pdf-upload/agenda.pdf')) {
+           unlink(__DIR__.'/../../../web/pdf-upload/agenda.pdf');
+       }
+
+       $pdf->move(__DIR__.'/../../../web/pdf-upload', 'agenda.pdf');
+
+       $this->addFlash('success', 'Agenda mise à jour avec succès !');
+       return $this->redirectToRoute('app_admin_index');
+   } 
 }
