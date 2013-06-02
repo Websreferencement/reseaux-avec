@@ -1,2 +1,47 @@
+<h3>Les dernières actualités</h3>
 
-<p>Pending</p>
+<ul>
+{% for actu in news %}
+    <li>
+        <strong>
+            <a href="{{ path('app_news_show', {'uri': actu.uri}) }}"
+               title="{{ actu.description }}">
+            {{ actu.title }}
+            </a>
+        </strong> 
+    </li>
+{% endfor %}
+</ul>
+
+<p class="center">
+    <a class="btn btn-small"
+       href="{{ path('frontend', {'uri': 'actualites'}) }}">
+       Voire toutes les actualités
+    </a>
+</p>
+
+<hr/>
+
+<h3>Nos dernières actions</h3>
+
+<ul>
+{% for action in actions %}
+    <li>
+        <strong>
+           <a href="{{ path('app_action_show', {'uri': action.uri}) }}"
+              title="{{ action.description }}"
+           >
+                {{ action.title }}
+           </a>
+        </strong>
+    </li>
+{% endfor %}
+</ul>
+
+<p class="center">
+    <a class="btn btn-small"
+       href="{{ path('frontend', {'uri': 'actions'}) }}">
+        Voire toutes les actualités
+    </a>
+</p>
+
