@@ -12,7 +12,7 @@
 	{% 
 		stylesheets 
 		'bundles/app/css/*.less'
-		filter="lessphp, cssrewrite, ?minify_css"
+		filter="lessphp, cssrewrite, ?yui_css"
 	%}
 
 		<link rel="stylesheet" href="{{asset_url}}" media="screen" >
@@ -26,7 +26,7 @@
 		javascripts
 		'bundles/app/js/src/*.js'
 		'bundles/app/js/main.js'
-		filter="?minify_js"
+		filter="?yui_js"
 	%}
 		<script src="{{asset_url}}"></script>
 	{% endjavascripts %}
