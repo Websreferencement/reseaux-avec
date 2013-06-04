@@ -3,6 +3,8 @@
 {% block headers %}
     <title>{% block title %}{% block subtitle '' %} &mdash; KnpRadBundle{% endblock %}</title>
     <meta name="description" content="{% block description '' %}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"> 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 {% endblock headers %}
 
 {% block flashes '' %}
