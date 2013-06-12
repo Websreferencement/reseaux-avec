@@ -1,47 +1,44 @@
-<h3>Les dernières actualités</h3>
-
-<ul>
-{% for actu in news %}
-    <li>
-        <strong>
-            <a href="{{ path('app_news_show', {'uri': actu.uri}) }}"
-               title="{{ actu.description }}">
-            {{ actu.title }}
+<div class="side-block" id="#actus-block">
+    <ul>
+    {% for actu in news %}
+        <li>
+            <strong>
+                <a href="{{ path('app_news_show', {'uri': actu.uri}) }}"
+                   title="{{ actu.description }}">
+                {{ actu.title }}
+                </a>
+            </strong> 
+        </li>
+    {% endfor %}
+        <li class="center">
+            <a class="btn btn-small"
+               href="{{ path('frontend', {'uri': 'actualites'}) }}">
+               Voir toutes les actualités
             </a>
-        </strong> 
-    </li>
-{% endfor %}
-</ul>
-
-<p class="center">
-    <a class="btn btn-small"
-       href="{{ path('frontend', {'uri': 'actualites'}) }}">
-       Voir toutes les actualités
-    </a>
-</p>
+        </li>
+    </ul>
+</div>
 
 <hr/>
 
-<h3>Nos dernières actions</h3>
-
-<ul>
-{% for action in actions %}
-    <li>
-        <strong>
-           <a href="{{ path('app_action_show', {'uri': action.uri}) }}"
-              title="{{ action.description }}"
-           >
-                {{ action.title }}
-           </a>
-        </strong>
-    </li>
-{% endfor %}
-</ul>
-
-<p class="center">
-    <a class="btn btn-small"
-       href="{{ path('frontend', {'uri': 'actions'}) }}">
-        Voir toutes les actualités
-    </a>
-</p>
-
+<div class="side-block" id="#actions-block">
+    <ul>
+    {% for action in actions %}
+        <li>
+            <strong>
+               <a href="{{ path('app_action_show', {'uri': action.uri}) }}"
+                  title="{{ action.description }}"
+               >
+                    {{ action.title }}
+               </a>
+            </strong>
+        </li>
+        <li class="center">
+            <a class="btn btn-small"
+               href="{{ path('frontend', {'uri': 'actions'}) }}">
+                Voir toutes les actualités
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
