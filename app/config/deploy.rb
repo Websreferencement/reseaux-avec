@@ -36,6 +36,8 @@ set :use_sudo,    false
 
 set :keep_releases, 3
 
+set :dump_assetic_assets, true
+
 before 'symfony:composer:update', 'symfony:copy_vendors'
 
 namespace :symfony do
