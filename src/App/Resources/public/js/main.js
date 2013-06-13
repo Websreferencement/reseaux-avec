@@ -4,5 +4,4 @@ jQuery(function($)
 	$('#responsive-menu').djegResponsiveMenu();
     $('#gallery').gallery();
     $('#gallery form').galleryFilterForm();
-    $('header').staticMenu();
 });
