@@ -52,7 +52,7 @@ header
 	width:100%;
 	height:309px;
 	@media(max-width:1024px){
-		height:363px;
+		height:189px;
 	}
 	#slider
 	{
@@ -70,7 +70,7 @@ header
 			position:absolute;
 		}
 		@media(max-width:1024px){
-			height:209px;
+			height:189px;
 		}
 	}
 	.arrow-left
@@ -89,7 +89,7 @@ header
 			background-image: url('../images/header/arrow_left_hover.png');
 		}
 		@media(max-width:1024px){
-			height:209px;
+			height:189px;
 		}
 	}
 	.arrow-right
@@ -108,33 +108,36 @@ header
 			background-image: url('../images/header/arrow_right_hover.png');
 		}
 		@media(max-width:1024px){
-			height:209px;
+			height:189px;
 		}
 	}
 	.unit
 	{
-		height:210px;
+		height:230px;
+        width:820px;
 		margin:auto;
 		padding:0;
 		overflow:hidden;
 		@media(max-width:1024px){
 			height:110px;
+            width:392px;
 		}
 		img
 		{
 			display:block;
 			width:960px;
 			height:210px;
-			margin:35px auto;
+			margin:auto;
 			@media(max-width:1024px){
 				height:93px;
-				width:760px;
+				width:332px;
 			}
 		}
 	}
 	#menu
 	{
-		height:99px;
+        margin-top:34px;
+		height:45px;
 		background-image:url('../images/menu/background.png');
 		background-repeat: repeat-x;
 		ul
@@ -148,7 +151,7 @@ header
 			.menu-item
 			{
 				display:block;
-				height:99px;
+				height:45px;
 				width:137px;
 				cursor:pointer;
 				margin:0;
@@ -191,10 +194,10 @@ header
 			}
 			.menu-adherents
 			{
-				background-image:url('../images/menu/adhérents.png');
+				background-image:url('../images/menu/adherents.png');
 				&:hover
 				{
-					background-image:url('../images/menu/adhérents_hover.png');
+					background-image:url('../images/menu/adherents_hover.png');
 				}
 			}
 			.menu-charte
@@ -229,7 +232,7 @@ header
 			font-weight: bold;
 			margin:auto;
 			position:relative;
-			top:30px;
+			top:5px;
 		}
 	}
     .static-menu
@@ -237,6 +240,24 @@ header
         position:fixed;
         top:0px;
         width:100%;
+    }
+}
+
+#adherent-block
+{
+    background-image: url('../images/sidebar/adherents.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    width:276px;
+    height:137px;
+    margin:5px auto;
+    a
+    {
+        display:block;
+        width:276px;
+        height:33px;
+        position:relative;
+        top:104px;
     }
 }
 

@@ -4,29 +4,28 @@
 # Be more verbose by uncommenting the following line
 # logger.level = Logger::MAX_LEVEL
 
-set :application, ""
-set :domain,      ""
-set :deploy_to,   ""
-set :app_path,    ""
-set :user,        ""
+set :application, "reseauxAVEC"
+set :domain,      "ks3094316.kimsufi.com"
+set :deploy_to,   "/home/gears/www/ravec"
+set :user,        "gears"
 
 role :web,        domain
 role :app,        domain
 role :db,         domain, :primary => true
 
 set :scm,         :git
-set :repository,  ""
-set :branch,      ""
+set :repository,  "https://github.com/Websreferencement/reseaux-avec.git"
+set :branch,      "master"
 set :deploy_via,  :remote_cache
 
 ssh_options[:forward_agent] = true
+ssh_options[:port] = "8022"
 
 set :use_composer,   true
 set :update_vendors, true
 
 set :writable_dirs,     ["app/cache", "app/logs"]
-set :webserver_user,    "www-data"
-set :permission_method, :acl
+set :webserver_user,    "gears"
 
 set :shared_files,    ["app/config/parameters.yml", "web/.htaccess", "web/robots.txt"]
 set :shared_children, ["app/logs"]
@@ -52,4 +51,3 @@ namespace :symfony do
 end
 
 after "deploy:update", "deploy:cleanup"
-after "deploy", "deploy:set_permissions"
